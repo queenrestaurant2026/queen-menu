@@ -174,7 +174,7 @@
     color:#fff;
   }
   .hero-card-info .tag{ font-size:10px; letter-spacing:2px; color:#F3D98A; font-weight:600; text-transform:uppercase; }
-  .hero-card-info .name{ font-family:'Cormorant Garamond',serif; font-weight:700; font-size:20px; margin-top:2px; }
+  .hero-card-info .name{ font-weight:700; font-size:20px; margin-top:2px; }
   .hero-card-info .note{ font-size:11px; opacity:.85; margin-top:1px; }
 
   /* ---------- Categories grid ---------- */
@@ -233,8 +233,8 @@
   .item-card-body{ flex:1; min-width:0; }
   .item-top-row{ display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
   .item-name{ font-weight:600; font-size:14.5px; color:var(--ink); }
-  .item-desc{ font-size:11.5px; color:var(--muted); margin-top:3px; line-height:1.4; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-  .item-price{ font-weight:600; font-size:13.5px; color:var(--gold-deep); margin-top:6px; font-family:'Cormorant Garamond',serif; }
+  .item-desc{ font-size:11.5px; color:var(--muted); margin-top:3px; line-height:1.4; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;display: none; }
+  .item-price{ font-weight:600; font-size:13.5px; color:var(--gold-deep); margin-top:6px; }
   .veg-badge{ width:14px; height:14px; border:1.5px solid; border-radius:3px; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;}
   .veg-badge.veg{ border-color:var(--veg); }
   .veg-badge.nonveg{ border-color:var(--nonveg); }
@@ -252,8 +252,8 @@
     padding:24px 22px 30px; box-shadow:0 -10px 30px rgba(0,0,0,0.06);
   }
   .detail-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
-  .detail-name{ font-family:'Cormorant Garamond',serif; font-weight:700; font-size:26px; color:var(--ink); }
-  .detail-price{ font-family:'Cormorant Garamond',serif; font-weight:700; font-size:22px; color:var(--gold-deep); white-space:nowrap; }
+  .detail-name{ font-weight:700; font-size:26px; color:var(--ink); }
+  .detail-price{ font-weight:700; font-size:22px; color:var(--gold-deep); white-space:nowrap; }
   .detail-desc{ font-size:13.5px; color:var(--ink-soft); line-height:1.65; margin-top:14px; }
   .detail-divider{ height:1px; background:var(--line); margin:20px 0; }
   .detail-block-title{ font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold-deep); font-weight:600; margin-bottom:10px; }
@@ -296,7 +296,7 @@
 
   /* ---------- Back button row ---------- */
   .back-row{ display:flex; align-items:center; gap:10px; }
-  .header-title{ font-family:'Cormorant Garamond',serif; font-weight:700; font-size:19px; letter-spacing:.5px; }
+  .header-title{ font-weight:700; font-size:19px; letter-spacing:.5px; }
 
   /* Fade-in image */
   img.lazy-img{ opacity:0; transition:opacity .4s ease; }
@@ -319,14 +319,13 @@
 
 /* ---------------- MENU DATA ---------------- */
 const CATEGORY_META = [
-  { key:"starters",     name:"Starters",        icon:"soup",     image:"https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=300&q=80&auto=format&fit=crop" },
-  { key:"main-course",  name:"Main Course",      icon:"utensils-crossed", image:"https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=300&q=80&auto=format&fit=crop" },
-  { key:"rice-biryani", name:"Rice & Biryani",   icon:"chef-hat", image:"https://images.unsplash.com/photo-1563379091339-03246963d96c?w=300&q=80&auto=format&fit=crop" },
-  { key:"breads",       name:"Breads",           icon:"wheat",    image:"https://images.unsplash.com/photo-1626074353765-517a681e40be?w=300&q=80&auto=format&fit=crop" },
-  { key:"beverages",    name:"Beverages",        icon:"cup-soda", image:"https://images.unsplash.com/photo-1497534547324-0ebb3f052e88?w=300&q=80&auto=format&fit=crop" },
-  { key:"desserts",     name:"Desserts",         icon:"cake-slice", image:"https://images.unsplash.com/photo-1551024506-0bccd828d307?w=300&q=80&auto=format&fit=crop" },
-  { key:"salads",       name:"Salads",           icon:"salad",    image:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=300&q=80&auto=format&fit=crop" },
-  { key:"sides",        name:"Sides",            icon:"circle-dot", image:"https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=300&q=80&auto=format&fit=crop" },
+  { key:"starters",     name:"Soup & Starter",        icon:"soup",     image:"images/soup.jpg" },
+  { key:"main-course",  name:"Main Course",      icon:"utensils-crossed", image:"images/main-c.jpg" },
+  { key:"rice-biryani", name:"Rice & Biryani",   icon:"chef-hat", image:"images/rice.jpg" },
+  { key:"breads",       name:" Tandoor",           icon:"wheat",    image:"images/tandoor.jpg" },
+  { key:"beverages",    name:" Breads",        icon:"cup-soda", image:"images/nan.jpg" },
+  { key:"desserts",     name:"Chinese",         icon:"cake-slice", image:"images/chinese.jpg" },
+  { key:"salads",       name:"Beverages",           icon:"salad",    image:"images/beverages.jpg" },
 ];
 
 let _id = 0;
@@ -334,26 +333,247 @@ const nextId = () => (++_id).toString();
 
 const MENU_ITEMS = [
   // Starters
-  { name:"Paneer Tikka", category:"starters", veg:true, price:249,
-    image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=80&auto=format&fit=crop",
-    desc:"Chargrilled cottage cheese cubes marinated in smoky yogurt spices.",
-    ingredients:["Paneer","Yogurt","Bell peppers","Onion","Kashmiri chilli"], allergens:["Dairy"] },
-  { name:"Chicken Seekh Kebab", category:"starters", veg:false, price:289,
-    image:"https://images.unsplash.com/photo-1600628421066-f6bda6a7b976?w=500&q=80&auto=format&fit=crop",
-    desc:"Minced chicken skewers grilled over charcoal with ginger and garam masala.",
-    ingredients:["Minced chicken","Ginger","Garlic","Garam masala","Mint"], allergens:[] },
-  { name:"Crispy Corn Chaat", category:"starters", veg:true, price:199,
-    image:"https://images.unsplash.com/photo-1625944230945-1b7dd3b949ab?w=500&q=80&auto=format&fit=crop",
-    desc:"Crunchy fried corn tossed with tangy spices and fresh herbs.",
-    ingredients:["Sweet corn","Corn flour","Chaat masala","Lime","Coriander"], allergens:["Gluten"] },
-  { name:"Fish Amritsari", category:"starters", veg:false, price:319,
-    image:"https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=500&q=80&auto=format&fit=crop",
-    desc:"Batter-fried fish fillets with a crisp carom-seed crust.",
-    ingredients:["Basa fish","Gram flour","Carom seeds","Lemon"], allergens:["Fish","Gluten"] },
-  { name:"Hara Bhara Kebab", category:"starters", veg:true, price:219,
-    image:"https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=500&q=80&auto=format&fit=crop",
-    desc:"Pan-seared patties of spinach, peas and potato with a hint of spice.",
-    ingredients:["Spinach","Green peas","Potato","Ginger","Cumin"], allergens:[] },
+  // ==================== SOUP ====================
+
+{ 
+  name: "Veg Hot & Sour Soup",
+  category: "soups",
+  veg: true,
+  price: 80,
+  image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=500&q=80&auto=format&fit=crop",
+  desc: "Hot and tangy vegetable soup with fresh vegetables and aromatic spices.",
+  ingredients: ["Mixed vegetables", "Cabbage", "Carrot", "Soy sauce", "Vinegar", "Spices"],
+  allergens: ["Soy"]
+},
+
+{ 
+  name: "Veg Munchow Soup",
+  category: "soups",
+  veg: true,
+  price: 80,
+  image: "https://images.unsplash.com/photo-1547592180-85f173990554?w=500&q=80&auto=format&fit=crop",
+  desc: "Spicy vegetable soup topped with crispy fried noodles.",
+  ingredients: ["Mixed vegetables", "Garlic", "Ginger", "Soy sauce", "Crispy noodles"],
+  allergens: ["Gluten", "Soy"]
+},
+
+{ 
+  name: "Chicken Hot & Sour Soup",
+  category: "soups",
+  veg: false,
+  price: 90,
+  image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=500&q=80&auto=format&fit=crop",
+  desc: "Classic hot and sour soup with tender chicken and fresh vegetables.",
+  ingredients: ["Chicken", "Vegetables", "Soy sauce", "Vinegar", "Chilli", "Spices"],
+  allergens: ["Soy"]
+},
+
+{ 
+  name: "Chicken Munchow Soup",
+  category: "soups",
+  veg: false,
+  price: 90,
+  image: "https://images.unsplash.com/photo-1547592180-85f173990554?w=500&q=80&auto=format&fit=crop",
+  desc: "Spicy chicken soup finished with crispy noodles and fresh herbs.",
+  ingredients: ["Chicken", "Vegetables", "Garlic", "Ginger", "Crispy noodles"],
+  allergens: ["Gluten", "Soy"]
+},
+
+
+// ==================== SALAD ====================
+
+{ 
+  name: "Green Salad",
+  category: "salads",
+  veg: true,
+  price: 60,
+  image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&q=80&auto=format&fit=crop",
+  desc: "Fresh seasonal vegetables served with a light lemon dressing.",
+  ingredients: ["Cucumber", "Onion", "Tomato", "Carrot", "Lemon", "Coriander"],
+  allergens: []
+},
+
+
+// ==================== STARTER VEG ====================
+
+{ 
+  name: "Plain Papad",
+  category: "starters",
+  veg: true,
+  price: 30,
+  image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=80&auto=format&fit=crop",
+  desc: "Crispy traditional papad, lightly roasted or fried.",
+  ingredients: ["Papad", "Salt"],
+  allergens: []
+},
+
+{ 
+  name: "Masala Papad",
+  category: "starters",
+  veg: true,
+  price: 40,
+  image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=80&auto=format&fit=crop",
+  desc: "Crispy papad topped with onion, tomato and tangy masala.",
+  ingredients: ["Papad", "Onion", "Tomato", "Chaat masala", "Coriander"],
+  allergens: []
+},
+
+{ 
+  name: "French Fries",
+  category: "starters",
+  veg: true,
+  price: 60,
+  image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=500&q=80&auto=format&fit=crop",
+  desc: "Golden crispy French fries seasoned with salt and spices.",
+  ingredients: ["Potato", "Salt", "Oil"],
+  allergens: []
+},
+
+{ 
+  name: "Veg Manchurian",
+  category: "starters",
+  veg: true,
+  price: 110,
+  image: "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=500&q=80&auto=format&fit=crop",
+  desc: "Crispy vegetable balls tossed in a spicy Indo-Chinese Manchurian sauce.",
+  ingredients: ["Cabbage", "Carrot", "Capsicum", "Garlic", "Soy sauce", "Corn flour"],
+  allergens: ["Gluten", "Soy"]
+},
+
+{ 
+  name: "Chilli Paneer",
+  category: "starters",
+  veg: true,
+  price: 110,
+  image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=500&q=80&auto=format&fit=crop",
+  desc: "Crispy paneer cubes tossed with chilli, onion and capsicum in a spicy sauce.",
+  ingredients: ["Paneer", "Capsicum", "Onion", "Green chilli", "Soy sauce"],
+  allergens: ["Dairy", "Soy"]
+},
+
+{ 
+  name: "Mushroom Salt & Pepper",
+  category: "starters",
+  veg: true,
+  price: 120,
+  image: "https://images.unsplash.com/photo-1504545102780-26774c1bb073?w=500&q=80&auto=format&fit=crop",
+  desc: "Crispy mushrooms tossed with black pepper, onion and aromatic spices.",
+  ingredients: ["Mushroom", "Onion", "Black pepper", "Garlic", "Corn flour"],
+  allergens: []
+},
+
+{ 
+  name: "Chilli Mushroom",
+  category: "starters",
+  veg: true,
+  price: 120,
+  image: "https://images.unsplash.com/photo-1504545102780-26774c1bb073?w=500&q=80&auto=format&fit=crop",
+  desc: "Tender mushrooms tossed with fresh chilli, onion and capsicum.",
+  ingredients: ["Mushroom", "Capsicum", "Onion", "Green chilli", "Soy sauce"],
+  allergens: ["Soy"]
+},
+
+{ 
+  name: "American Crispy Corn",
+  category: "starters",
+  veg: true,
+  price: 120,
+  image: "https://images.unsplash.com/photo-1625944230945-1b7dd3b949ab?w=500&q=80&auto=format&fit=crop",
+  desc: "Crispy golden corn tossed with herbs and spicy seasoning.",
+  ingredients: ["Sweet corn", "Corn flour", "Chilli", "Coriander", "Spices"],
+  allergens: []
+},
+
+{ 
+  name: "Crispy Honey Potato",
+  category: "starters",
+  veg: true,
+  price: 140,
+  image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=500&q=80&auto=format&fit=crop",
+  desc: "Crispy potato strips glazed with sweet honey and spicy seasoning.",
+  ingredients: ["Potato", "Honey", "Sesame", "Chilli", "Spices"],
+  allergens: ["Sesame"]
+},
+
+{ 
+  name: "Cheese Roll",
+  category: "starters",
+  veg: true,
+  price: 160,
+  image: "https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?w=500&q=80&auto=format&fit=crop",
+  desc: "Crispy rolls filled with creamy melted cheese and aromatic seasoning.",
+  ingredients: ["Cheese", "Spring onion", "Garlic", "Wrapper", "Spices"],
+  allergens: ["Dairy", "Gluten"]
+},
+
+
+// ==================== STARTER NON-VEG ====================
+
+{ 
+  name: "Chicken Pakoda",
+  category: "starters",
+  veg: false,
+  price: 110,
+  image: "https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?w=500&q=80&auto=format&fit=crop",
+  desc: "Crispy chicken fritters coated with seasoned batter and deep fried.",
+  ingredients: ["Chicken", "Gram flour", "Ginger", "Garlic", "Spices"],
+  allergens: ["Gluten"]
+},
+
+{ 
+  name: "Chilli Chicken",
+  category: "starters",
+  veg: false,
+  price: 210,
+  image: "https://images.unsplash.com/photo-1525755662778-989d0524087e?w=500&q=80&auto=format&fit=crop",
+  desc: "Crispy chicken tossed with green chilli, onion and capsicum in a spicy sauce.",
+  ingredients: ["Chicken", "Capsicum", "Onion", "Green chilli", "Soy sauce"],
+  allergens: ["Soy", "Gluten"]
+},
+
+{ 
+  name: "Chicken Lollipop",
+  category: "starters",
+  veg: false,
+  price: 180,
+  image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=80&auto=format&fit=crop",
+  desc: "Juicy chicken lollipops marinated in aromatic spices and fried until crisp.",
+  ingredients: ["Chicken wings", "Ginger", "Garlic", "Chilli", "Spices"],
+  allergens: ["Gluten"]
+},
+
+{ 
+  name: "Chicken 65",
+  category: "starters",
+  veg: false,
+  price: 210,
+  image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=500&q=80&auto=format&fit=crop",
+  desc: "Crispy spicy fried chicken tossed with curry leaves and aromatic spices.",
+  ingredients: ["Chicken", "Yogurt", "Curry leaves", "Chilli", "Spices"],
+  allergens: ["Dairy"]
+},
+
+{ 
+  name: "Queen's Special Chicken",
+  category: "starters",
+  veg: false,
+  price: 150,
+  image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=500&q=80&auto=format&fit=crop",
+  desc: "Chef's special chicken starter prepared with a rich blend of spices.",
+  ingredients: ["Chicken", "Onion", "Capsicum", "Ginger", "Garlic", "Spices"],
+  allergens: []
+},
+
+{ 
+  name: "Dragon Chicken",
+  category: "starters",
+  veg: false,
+  price: 180,
+  image: "https://images.unsplash.com/photo-1525755662778-989d0524087e?w=500&q=80&auto=format&fit=crop",
+  desc: "Crispy chicken strips tossed in a fiery Indo-Chinese dragon sauce.",
+  ingredients: ["Chicken", "Capsicum", "Onion", "Dry chilli", "Soy sauce", "Garlic"],
+  allergens: ["Soy", "Gluten"]
+},
 
   // Main Course
   { name:"Paneer Butter Masala", category:"main-course", veg:true, price:299,
@@ -511,7 +731,7 @@ const RESTAURANT = {
   subtitle:"RESTAURANT",
   tagline:"Good Food • Good Mood • Great Memories",
   heroImage:"https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80&auto=format&fit=crop",
-  homeHero:"https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=700&q=80&auto=format&fit=crop",
+  homeHero:"images/banner.jpg",
   todaysSpecial:"Chicken Tikka Masala"
 };
 
@@ -650,9 +870,7 @@ function renderHome(){
     <div class="hero-card">
       ${lazyImg(RESTAURANT.homeHero, "Today's special")}
       <div class="hero-card-info">
-        <div class="tag">Today's Special</div>
-        <div class="name">${RESTAURANT.todaysSpecial}</div>
-        <div class="note">Made with love, just for you</div>
+       
       </div>
     </div>
     <div class="section-pad" style="display:flex; align-items:baseline; justify-content:space-between; padding-top:20px;">
