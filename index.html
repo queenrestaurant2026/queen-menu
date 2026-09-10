@@ -228,7 +228,7 @@
     transition:transform .15s ease;
   }
   .item-card:active{ transform:scale(0.98); }
-  .item-card-img{ width:74px; height:74px; border-radius:14px; overflow:hidden; flex-shrink:0; background:var(--cream-soft); position:relative;}
+  .item-card-img{display: none; width:74px; height:74px; border-radius:14px; overflow:hidden; flex-shrink:0; background:var(--cream-soft); position:relative;}
   .item-card-img img{ width:100%; height:100%; object-fit:cover; }
   .item-card-body{ flex:1; min-width:0; }
   .item-top-row{ display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
@@ -322,10 +322,11 @@ const CATEGORY_META = [
   { key:"starters",     name:"Soup & Starter",        icon:"soup",     image:"images/soup.jpg" },
   { key:"main-course",  name:"Main Course",      icon:"utensils-crossed", image:"images/main-c.jpg" },
   { key:"rice-biryani", name:"Rice & Biryani",   icon:"chef-hat", image:"images/rice.jpg" },
-  { key:"breads",       name:" Tandoor",           icon:"wheat",    image:"images/tandoor.jpg" },
-  { key:"beverages",    name:" Breads",        icon:"cup-soda", image:"images/nan.jpg" },
-  { key:"desserts",     name:"Chinese",         icon:"cake-slice", image:"images/chinese.jpg" },
-  { key:"salads",       name:"Beverages",           icon:"salad",    image:"images/beverages.jpg" },
+  { key:"Tandoor",       name:"Tandoor",           icon:"wheat",    image:"images/tandoor.jpg" },
+  { key:"Breads",    name:" Breads",        icon:"cup-soda", image:"images/nan.jpg" },
+  { key:"Chinese",     name:"Chinese",         icon:"cake-slice", image:"images/chinese.jpg" },
+  { key:"Beverages",       name:"Beverages",           icon:"salad",    image:"images/beverages.jpg" },
+   { key:"Thali",       name:"Ghar Ka Thali",           icon:"salad",    image:"images/thali.jpg" },
 ];
 
 let _id = 0;
@@ -334,60 +335,61 @@ const nextId = () => (++_id).toString();
 const MENU_ITEMS = [
   // Starters
   // ==================== SOUP ====================
-
-{ 
+{
   name: "Veg Hot & Sour Soup",
-  category: "soups",
+  category: "starters",
   veg: true,
   price: 80,
-  image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=500&q=80&auto=format&fit=crop",
-  desc: "Hot and tangy vegetable soup with fresh vegetables and aromatic spices.",
-  ingredients: ["Mixed vegetables", "Cabbage", "Carrot", "Soy sauce", "Vinegar", "Spices"],
-  allergens: ["Soy"]
+  halfPrice: null,
+  fullPrice: 80,
+  desc: "A spicy and tangy vegetable soup with fresh vegetables and aromatic spices.",
+  ingredients: ["Mixed vegetables", "Cabbage", "Carrot", "Green chilli", "Soy sauce", "Spices"],
+  allergens: ["Soy", "Gluten"]
 },
 
-{ 
+{
   name: "Veg Munchow Soup",
-  category: "soups",
+  category: "starters",
   veg: true,
   price: 80,
-  image: "https://images.unsplash.com/photo-1547592180-85f173990554?w=500&q=80&auto=format&fit=crop",
-  desc: "Spicy vegetable soup topped with crispy fried noodles.",
-  ingredients: ["Mixed vegetables", "Garlic", "Ginger", "Soy sauce", "Crispy noodles"],
-  allergens: ["Gluten", "Soy"]
+  halfPrice: null,
+  fullPrice: 80,
+  desc: "Flavorful vegetable soup topped with crispy noodles and aromatic spices.",
+  ingredients: ["Mixed vegetables", "Cabbage", "Carrot", "Garlic", "Soy sauce", "Crispy noodles"],
+  allergens: ["Soy", "Gluten"]
 },
 
-{ 
+{
   name: "Chicken Hot & Sour Soup",
-  category: "soups",
+  category: "starters",
   veg: false,
   price: 90,
-  image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=500&q=80&auto=format&fit=crop",
-  desc: "Classic hot and sour soup with tender chicken and fresh vegetables.",
-  ingredients: ["Chicken", "Vegetables", "Soy sauce", "Vinegar", "Chilli", "Spices"],
-  allergens: ["Soy"]
+  halfPrice: null,
+  fullPrice: 90,
+  desc: "A spicy and tangy chicken soup prepared with fresh vegetables and aromatic spices.",
+  ingredients: ["Chicken", "Cabbage", "Carrot", "Green chilli", "Soy sauce", "Spices"],
+  allergens: ["Soy", "Gluten"]
 },
 
-{ 
+{
   name: "Chicken Munchow Soup",
-  category: "soups",
+  category: "starters",
   veg: false,
   price: 90,
-  image: "https://images.unsplash.com/photo-1547592180-85f173990554?w=500&q=80&auto=format&fit=crop",
-  desc: "Spicy chicken soup finished with crispy noodles and fresh herbs.",
-  ingredients: ["Chicken", "Vegetables", "Garlic", "Ginger", "Crispy noodles"],
-  allergens: ["Gluten", "Soy"]
+  halfPrice: null,
+  fullPrice: 90,
+  desc: "Delicious chicken soup topped with crispy noodles and seasoned with aromatic spices.",
+  ingredients: ["Chicken", "Mixed vegetables", "Garlic", "Soy sauce", "Crispy noodles", "Spices"],
+  allergens: ["Soy", "Gluten"]
 },
-
 
 // ==================== SALAD ====================
 
 { 
   name: "Green Salad",
-  category: "salads",
+  category: "starters",
   veg: true,
-  price: 60,
-  image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&q=80&auto=format&fit=crop",
+  price: 40,
   desc: "Fresh seasonal vegetables served with a light lemon dressing.",
   ingredients: ["Cucumber", "Onion", "Tomato", "Carrot", "Lemon", "Coriander"],
   allergens: []
@@ -400,8 +402,9 @@ const MENU_ITEMS = [
   name: "Plain Papad",
   category: "starters",
   veg: true,
-  price: 30,
-  image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=80&auto=format&fit=crop",
+  price: 20,
+  halfPrice: 20,
+  fullPrice: null,
   desc: "Crispy traditional papad, lightly roasted or fried.",
   ingredients: ["Papad", "Salt"],
   allergens: []
@@ -411,8 +414,9 @@ const MENU_ITEMS = [
   name: "Masala Papad",
   category: "starters",
   veg: true,
-  price: 40,
-  image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=80&auto=format&fit=crop",
+  price: 30,
+  halfPrice: 30,
+  fullPrice: null,
   desc: "Crispy papad topped with onion, tomato and tangy masala.",
   ingredients: ["Papad", "Onion", "Tomato", "Chaat masala", "Coriander"],
   allergens: []
@@ -423,7 +427,8 @@ const MENU_ITEMS = [
   category: "starters",
   veg: true,
   price: 60,
-  image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=500&q=80&auto=format&fit=crop",
+  halfPrice: 60,
+  fullPrice: null,
   desc: "Golden crispy French fries seasoned with salt and spices.",
   ingredients: ["Potato", "Salt", "Oil"],
   allergens: []
@@ -433,8 +438,9 @@ const MENU_ITEMS = [
   name: "Veg Manchurian",
   category: "starters",
   veg: true,
-  price: 110,
-  image: "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=500&q=80&auto=format&fit=crop",
+  price: 60,
+  halfPrice: 60,
+  fullPrice: 120,
   desc: "Crispy vegetable balls tossed in a spicy Indo-Chinese Manchurian sauce.",
   ingredients: ["Cabbage", "Carrot", "Capsicum", "Garlic", "Soy sauce", "Corn flour"],
   allergens: ["Gluten", "Soy"]
@@ -444,8 +450,9 @@ const MENU_ITEMS = [
   name: "Chilli Paneer",
   category: "starters",
   veg: true,
-  price: 110,
-  image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=500&q=80&auto=format&fit=crop",
+  price: 120,
+  halfPrice: 120,
+  fullPrice: 240,
   desc: "Crispy paneer cubes tossed with chilli, onion and capsicum in a spicy sauce.",
   ingredients: ["Paneer", "Capsicum", "Onion", "Green chilli", "Soy sauce"],
   allergens: ["Dairy", "Soy"]
@@ -455,8 +462,9 @@ const MENU_ITEMS = [
   name: "Mushroom Salt & Pepper",
   category: "starters",
   veg: true,
-  price: 120,
-  image: "https://images.unsplash.com/photo-1504545102780-26774c1bb073?w=500&q=80&auto=format&fit=crop",
+  price: 100,
+  halfPrice: 100,
+  fullPrice: 200,
   desc: "Crispy mushrooms tossed with black pepper, onion and aromatic spices.",
   ingredients: ["Mushroom", "Onion", "Black pepper", "Garlic", "Corn flour"],
   allergens: []
@@ -467,10 +475,23 @@ const MENU_ITEMS = [
   category: "starters",
   veg: true,
   price: 120,
-  image: "https://images.unsplash.com/photo-1504545102780-26774c1bb073?w=500&q=80&auto=format&fit=crop",
+  halfPrice: 120,
+  fullPrice: 240,
   desc: "Tender mushrooms tossed with fresh chilli, onion and capsicum.",
   ingredients: ["Mushroom", "Capsicum", "Onion", "Green chilli", "Soy sauce"],
   allergens: ["Soy"]
+},
+
+{ 
+  name: "Chilli Gobi",
+  category: "starters",
+  veg: true,
+  price: 100,
+  halfPrice: 100,
+  fullPrice: 200,
+  desc: "Crispy cauliflower tossed with fresh chilli, onion and capsicum in a spicy sauce.",
+  ingredients: ["Cauliflower", "Capsicum", "Onion", "Green chilli", "Soy sauce"],
+  allergens: ["Soy", "Gluten"]
 },
 
 { 
@@ -478,7 +499,8 @@ const MENU_ITEMS = [
   category: "starters",
   veg: true,
   price: 120,
-  image: "https://images.unsplash.com/photo-1625944230945-1b7dd3b949ab?w=500&q=80&auto=format&fit=crop",
+  halfPrice: null,
+  fullPrice: 120,
   desc: "Crispy golden corn tossed with herbs and spicy seasoning.",
   ingredients: ["Sweet corn", "Corn flour", "Chilli", "Coriander", "Spices"],
   allergens: []
@@ -488,8 +510,9 @@ const MENU_ITEMS = [
   name: "Crispy Honey Potato",
   category: "starters",
   veg: true,
-  price: 140,
-  image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=500&q=80&auto=format&fit=crop",
+  price: 120,
+  halfPrice: null,
+  fullPrice: 120,
   desc: "Crispy potato strips glazed with sweet honey and spicy seasoning.",
   ingredients: ["Potato", "Honey", "Sesame", "Chilli", "Spices"],
   allergens: ["Sesame"]
@@ -500,21 +523,46 @@ const MENU_ITEMS = [
   category: "starters",
   veg: true,
   price: 160,
-  image: "https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?w=500&q=80&auto=format&fit=crop",
+  halfPrice: null,
+  fullPrice: 160,
   desc: "Crispy rolls filled with creamy melted cheese and aromatic seasoning.",
   ingredients: ["Cheese", "Spring onion", "Garlic", "Wrapper", "Spices"],
   allergens: ["Dairy", "Gluten"]
 },
 
+{ 
+  name: "Paneer Pakoda",
+  category: "starters",
+  veg: true,
+  price: 120,
+  halfPrice: null,
+  fullPrice: 120,
+  desc: "Crispy paneer fritters coated with seasoned gram flour batter.",
+  ingredients: ["Paneer", "Gram flour", "Ginger", "Garlic", "Spices"],
+  allergens: ["Dairy"]
+},
+
+{ 
+  name: "Mushroom Pakoda",
+  category: "starters",
+  veg: true,
+  price: 120,
+  halfPrice: null,
+  fullPrice: 120,
+  desc: "Crispy mushroom fritters coated with seasoned batter and deep fried.",
+  ingredients: ["Mushroom", "Gram flour", "Ginger", "Garlic", "Spices"],
+  allergens: []
+},
 
 // ==================== STARTER NON-VEG ====================
-
 { 
   name: "Chicken Pakoda",
   category: "starters",
   veg: false,
-  price: 110,
-  image: "https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?w=500&q=80&auto=format&fit=crop",
+  price: 140,
+  halfPrice: null,
+  fullPrice: 140,
+  pcs: "12 pcs",
   desc: "Crispy chicken fritters coated with seasoned batter and deep fried.",
   ingredients: ["Chicken", "Gram flour", "Ginger", "Garlic", "Spices"],
   allergens: ["Gluten"]
@@ -524,8 +572,9 @@ const MENU_ITEMS = [
   name: "Chilli Chicken",
   category: "starters",
   veg: false,
-  price: 210,
-  image: "https://images.unsplash.com/photo-1525755662778-989d0524087e?w=500&q=80&auto=format&fit=crop",
+  price: 120,
+  halfPrice: 120,
+  fullPrice: 240,
   desc: "Crispy chicken tossed with green chilli, onion and capsicum in a spicy sauce.",
   ingredients: ["Chicken", "Capsicum", "Onion", "Green chilli", "Soy sauce"],
   allergens: ["Soy", "Gluten"]
@@ -536,7 +585,9 @@ const MENU_ITEMS = [
   category: "starters",
   veg: false,
   price: 180,
-  image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=80&auto=format&fit=crop",
+  halfPrice: null,
+  fullPrice: 180,
+  pcs: "6 pcs",
   desc: "Juicy chicken lollipops marinated in aromatic spices and fried until crisp.",
   ingredients: ["Chicken wings", "Ginger", "Garlic", "Chilli", "Spices"],
   allergens: ["Gluten"]
@@ -546,21 +597,23 @@ const MENU_ITEMS = [
   name: "Chicken 65",
   category: "starters",
   veg: false,
-  price: 210,
-  image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=500&q=80&auto=format&fit=crop",
+  price: 120,
+  halfPrice: 120,
+  fullPrice: 240,
   desc: "Crispy spicy fried chicken tossed with curry leaves and aromatic spices.",
   ingredients: ["Chicken", "Yogurt", "Curry leaves", "Chilli", "Spices"],
   allergens: ["Dairy"]
 },
 
 { 
-  name: "Queen's Special Chicken",
+  name: "Chicken 555",
   category: "starters",
   veg: false,
-  price: 150,
-  image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=500&q=80&auto=format&fit=crop",
-  desc: "Chef's special chicken starter prepared with a rich blend of spices.",
-  ingredients: ["Chicken", "Onion", "Capsicum", "Ginger", "Garlic", "Spices"],
+  price: 160,
+  halfPrice: null,
+  fullPrice: 160,
+  desc: "Crispy chicken prepared with aromatic spices and a flavorful coating.",
+  ingredients: ["Chicken", "Onion", "Capsicum", "Garlic", "Spices"],
   allergens: []
 },
 
@@ -568,162 +621,902 @@ const MENU_ITEMS = [
   name: "Dragon Chicken",
   category: "starters",
   veg: false,
-  price: 180,
-  image: "https://images.unsplash.com/photo-1525755662778-989d0524087e?w=500&q=80&auto=format&fit=crop",
+  price: 160,
+  halfPrice: null,
+  fullPrice: 160,
   desc: "Crispy chicken strips tossed in a fiery Indo-Chinese dragon sauce.",
   ingredients: ["Chicken", "Capsicum", "Onion", "Dry chilli", "Soy sauce", "Garlic"],
   allergens: ["Soy", "Gluten"]
 },
 
+{ 
+  name: "Egg Chilli",
+  category: "starters",
+  veg: false,
+  price: 130,
+  halfPrice: null,
+  fullPrice: 130,
+  desc: "Crispy egg tossed with fresh chilli, onion and capsicum in a spicy sauce.",
+  ingredients: ["Egg", "Capsicum", "Onion", "Green chilli", "Soy sauce"],
+  allergens: ["Egg", "Soy"]
+},
+
+
+
   // Main Course
-  { name:"Paneer Butter Masala", category:"main-course", veg:true, price:299,
-    image:"https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=500&q=80&auto=format&fit=crop",
-    desc:"Cottage cheese cooked in a rich, buttery tomato gravy with cream.",
-    ingredients:["Paneer","Tomato","Butter","Cream","Kasuri methi"], allergens:["Dairy"] },
-  { name:"Dal Makhani", category:"main-course", veg:true, price:249,
-    image:"https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=500&q=80&auto=format&fit=crop",
-    desc:"Slow-cooked black lentils simmered overnight with butter and cream.",
-    ingredients:["Black lentils","Kidney beans","Butter","Cream","Tomato"], allergens:["Dairy"] },
-  { name:"Kadai Paneer", category:"main-course", veg:true, price:279,
-    image:"https://images.unsplash.com/photo-1567188040759-fb8a883dc6d3?w=500&q=80&auto=format&fit=crop",
-    desc:"Cottage cheese with bell peppers tossed in a fresh kadai masala.",
-    ingredients:["Paneer","Bell peppers","Onion","Kadai masala"], allergens:["Dairy"] },
-  { name:"Butter Chicken", category:"main-course", veg:false, price:329,
-    image:"https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=500&q=80&auto=format&fit=crop",
-    desc:"Tender tandoori chicken simmered in a velvety buttery tomato gravy.",
-    ingredients:["Chicken","Tomato","Butter","Cream","Fenugreek"], allergens:["Dairy"] },
-  { name:"Chicken Tikka Masala", category:"main-course", veg:false, price:339,
-    image:"https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=500&q=80&auto=format&fit=crop",
-    desc:"Grilled chicken simmered in a spiced, aromatic tomato-onion masala.",
-    ingredients:["Chicken","Tomato","Onion","Yogurt","Garam masala"], allergens:["Dairy"] },
-  { name:"Palak Paneer", category:"main-course", veg:true, price:269,
-    image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=80&auto=format&fit=crop",
-    desc:"Cottage cheese cubes in a smooth, mildly spiced spinach purée.",
-    ingredients:["Paneer","Spinach","Garlic","Cream"], allergens:["Dairy"] },
-  { name:"Mutton Rogan Josh", category:"main-course", veg:false, price:379,
-    image:"https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=500&q=80&auto=format&fit=crop",
-    desc:"Slow-braised lamb in a Kashmiri red chilli and yogurt gravy.",
-    ingredients:["Lamb","Yogurt","Kashmiri chilli","Fennel"], allergens:["Dairy"] },
+  // MAIN COURSE (VEG)
+
+{
+  name: "Shahi Paneer",
+  category: "main-course",
+  veg: true,
+  price: 120,
+  halfPrice: 120,
+  fullPrice: 240,
+  desc: "Soft paneer cooked in a rich, creamy and mildly spiced gravy.",
+  ingredients: ["Paneer", "Tomato", "Cream", "Onion", "Spices"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Kadhai Paneer",
+  category: "main-course",
+  veg: true,
+  price: 120,
+  halfPrice: 120,
+  fullPrice: 240,
+  desc: "Paneer cooked with capsicum, onion and freshly ground kadai spices.",
+  ingredients: ["Paneer", "Capsicum", "Onion", "Kadai masala"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Paneer Labangalata",
+  category: "main-course",
+  veg: true,
+  price: 240,
+  halfPrice: null,
+  fullPrice: 240,
+  desc: "Paneer prepared in a rich and aromatic gravy with traditional Indian spices.",
+  ingredients: ["Paneer", "Onion", "Tomato", "Spices", "Cream"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Paneer Butter Masala",
+  category: "main-course",
+  veg: true,
+  price: 120,
+  halfPrice: 120,
+  fullPrice: 240,
+  desc: "Cottage cheese cooked in a rich buttery tomato gravy with cream.",
+  ingredients: ["Paneer", "Tomato", "Butter", "Cream", "Kasuri methi"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Paneer Hydrabadi",
+  category: "main-course",
+  veg: true,
+  price: 120,
+  halfPrice: 120,
+  fullPrice: 240,
+  desc: "Paneer cooked in a flavorful Hyderabadi-style gravy with aromatic spices.",
+  ingredients: ["Paneer", "Onion", "Tomato", "Green chilli", "Spices"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Veg Kadhai",
+  category: "main-course",
+  veg: true,
+  price: 120,
+  halfPrice: 120,
+  fullPrice: 240,
+  desc: "Mixed vegetables cooked with capsicum, onion and fresh kadai masala.",
+  ingredients: ["Mixed vegetables", "Capsicum", "Onion", "Kadai masala"],
+  allergens: []
+},
+
+{
+  name: "Mix Veg",
+  category: "main-course",
+  veg: true,
+  price: 120,
+  halfPrice: 120,
+  fullPrice: 240,
+  desc: "A delicious combination of fresh vegetables cooked in a flavorful gravy.",
+  ingredients: ["Mixed vegetables", "Onion", "Tomato", "Spices"],
+  allergens: []
+},
+
+{
+  name: "Kadhai Mushroom",
+  category: "main-course",
+  veg: true,
+  price: 120,
+  halfPrice: 120,
+  fullPrice: 240,
+  desc: "Fresh mushrooms tossed with capsicum, onion and aromatic kadai spices.",
+  ingredients: ["Mushroom", "Capsicum", "Onion", "Kadai masala"],
+  allergens: []
+},
+
+{
+  name: "Mushroom Masala",
+  category: "main-course",
+  veg: true,
+  price: 120,
+  halfPrice: 120,
+  fullPrice: 240,
+  desc: "Mushrooms cooked in a rich onion-tomato masala with Indian spices.",
+  ingredients: ["Mushroom", "Onion", "Tomato", "Spices"],
+  allergens: []
+},
+
+{
+  name: "Chana Masala",
+  category: "main-course",
+  veg: true,
+  price: 80,
+  halfPrice: 80,
+  fullPrice: 160,
+  desc: "Chickpeas cooked in a spicy and aromatic tomato-based masala.",
+  ingredients: ["Chickpeas", "Tomato", "Onion", "Ginger", "Spices"],
+  allergens: []
+},
+
+{
+  name: "Veg Tadka",
+  category: "main-course",
+  veg: true,
+  price: 80,
+  halfPrice: 80,
+  fullPrice: 160,
+  desc: "A flavorful vegetable preparation finished with a fragrant Indian tadka.",
+  ingredients: ["Mixed vegetables", "Garlic", "Cumin", "Spices"],
+  allergens: []
+},
+
+{
+  name: "Dal Tadka",
+  category: "main-course",
+  veg: true,
+  price: 60,
+  halfPrice: 60,
+  fullPrice: 120,
+  desc: "Yellow lentils tempered with garlic, cumin and aromatic spices.",
+  ingredients: ["Yellow lentils", "Garlic", "Cumin", "Tomato", "Spices"],
+  allergens: []
+},
+
+{
+  name: "Dal Fry",
+  category: "main-course",
+  veg: true,
+  price: 50,
+  halfPrice: 50,
+  fullPrice: 100,
+  desc: "Comforting lentils cooked with onion, tomato and mild Indian spices.",
+  ingredients: ["Yellow lentils", "Onion", "Tomato", "Garlic", "Spices"],
+  allergens: []
+},
+
+
+// MAIN COURSE (NON-VEG)
+
+{
+  name: "Mutton Curry",
+  category: "main-course",
+  veg: false,
+  price: 210,
+  halfPrice: 210,
+  fullPrice: 420,
+  desc: "Tender mutton slow-cooked in a rich and aromatic Indian curry.",
+  ingredients: ["Mutton", "Onion", "Tomato", "Ginger", "Garlic", "Spices"],
+  allergens: []
+},
+
+{
+  name: "Mutton Kadhai",
+  category: "main-course",
+  veg: false,
+  price: 220,
+  halfPrice: 220,
+  fullPrice: 440,
+  desc: "Tender mutton cooked with capsicum, onion and aromatic kadai spices.",
+  ingredients: ["Mutton", "Capsicum", "Onion", "Kadai masala", "Spices"],
+  allergens: []
+},
+
+{
+  name: "Butter Chicken",
+  category: "main-course",
+  veg: false,
+  price: 130,
+  halfPrice: 130,
+  fullPrice: 260,
+  desc: "Tender chicken cooked in a smooth buttery tomato and cream gravy.",
+  ingredients: ["Chicken", "Tomato", "Butter", "Cream", "Fenugreek"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Tandoori Butter Chicken",
+  category: "main-course",
+  veg: false,
+  price: 300,
+  halfPrice: null,
+  fullPrice: 300,
+  desc: "Tandoori chicken simmered in a rich buttery and aromatic gravy.",
+  ingredients: ["Chicken", "Butter", "Tomato", "Cream", "Tandoori spices"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Chicken Tika Masala",
+  category: "main-course",
+  veg: false,
+  price: 300,
+  halfPrice: null,
+  fullPrice: 300,
+  desc: "Grilled chicken pieces cooked in a rich and aromatic tomato-onion masala.",
+  ingredients: ["Chicken", "Tomato", "Onion", "Yogurt", "Garam masala"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Chicken Curry",
+  category: "main-course",
+  veg: false,
+  price: 120,
+  halfPrice: 120,
+  fullPrice: 240,
+  desc: "Tender chicken cooked in a traditional spicy onion-tomato curry.",
+  ingredients: ["Chicken", "Onion", "Tomato", "Ginger", "Garlic", "Spices"],
+  allergens: []
+},
+
+{
+  name: "Chicken Kadhai",
+  category: "main-course",
+  veg: false,
+  price: 120,
+  halfPrice: 120,
+  fullPrice: 240,
+  desc: "Chicken cooked with capsicum, onion and freshly ground kadai spices.",
+  ingredients: ["Chicken", "Capsicum", "Onion", "Kadai masala"],
+  allergens: []
+},
+
+{
+  name: "Chicken Do Pyaza",
+  category: "main-course",
+  veg: false,
+  price: 130,
+  halfPrice: 130,
+  fullPrice: 260,
+  desc: "Tender chicken cooked with generous amounts of onion and aromatic spices.",
+  ingredients: ["Chicken", "Onion", "Tomato", "Ginger", "Garlic", "Spices"],
+  allergens: []
+},
+
+{
+  name: "Chicken Kasha",
+  category: "main-course",
+  veg: false,
+  price: 120,
+  halfPrice: 120,
+  fullPrice: 240,
+  desc: "Slow-cooked chicken prepared with caramelized onion and rich aromatic spices.",
+  ingredients: ["Chicken", "Onion", "Ginger", "Garlic", "Spices"],
+  allergens: []
+},
+
+{
+  name: "Prawn Masala",
+  category: "main-course",
+  veg: false,
+  price: 230,
+  halfPrice: null,
+  fullPrice: 230,
+  desc: "Juicy prawns cooked in a spicy and flavorful masala gravy.",
+  ingredients: ["Prawns", "Onion", "Tomato", "Garlic", "Spices"],
+  allergens: ["Shellfish"]
+},
+
+{
+  name: "Fried Fish",
+  category: "main-course",
+  veg: false,
+  price: 100,
+  halfPrice: null,
+  fullPrice: 100,
+  pcs: "2 pcs",
+  desc: "Crispy fried fish seasoned with aromatic spices and served hot.",
+  ingredients: ["Fish", "Spices", "Gram flour", "Lemon"],
+  allergens: ["Fish"]
+},
+
+{
+  name: "Fish Curry",
+  category: "main-course",
+  veg: false,
+  price: 150,
+  halfPrice: null,
+  fullPrice: 150,
+  pcs: "2 pcs",
+  desc: "Tender fish pieces cooked in a flavorful traditional curry.",
+  ingredients: ["Fish", "Onion", "Tomato", "Ginger", "Garlic", "Spices"],
+  allergens: ["Fish"]
+},
 
   // Rice & Biryani
-  { name:"Chicken Dum Biryani", category:"rice-biryani", veg:false, price:349,
-    image:"https://images.unsplash.com/photo-1563379091339-03246963d96c?w=500&q=80&auto=format&fit=crop",
-    desc:"Basmati rice layered with marinated chicken, slow-cooked in sealed dum style.",
-    ingredients:["Basmati rice","Chicken","Saffron","Fried onion","Mint"], allergens:["Dairy"] },
-  { name:"Veg Biryani", category:"rice-biryani", veg:true, price:269,
-    image:"https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=500&q=80&auto=format&fit=crop",
-    desc:"Fragrant basmati rice cooked with seasonal vegetables and whole spices.",
-    ingredients:["Basmati rice","Mixed vegetables","Saffron","Whole spices"], allergens:[] },
-  { name:"Mutton Biryani", category:"rice-biryani", veg:false, price:399,
-    image:"https://images.unsplash.com/photo-1633945274405-b6c8069047b0?w=500&q=80&auto=format&fit=crop",
-    desc:"Slow-cooked mutton and rice layered with saffron and caramelised onions.",
-    ingredients:["Basmati rice","Mutton","Saffron","Fried onion"], allergens:["Dairy"] },
-  { name:"Jeera Rice", category:"rice-biryani", veg:true, price:179,
-    image:"https://images.unsplash.com/photo-1596797038530-2c107229654b?w=500&q=80&auto=format&fit=crop",
-    desc:"Steamed basmati rice tempered with roasted cumin and ghee.",
-    ingredients:["Basmati rice","Cumin seeds","Ghee"], allergens:["Dairy"] },
-  { name:"Curd Rice", category:"rice-biryani", veg:true, price:169,
-    image:"https://images.unsplash.com/photo-1596797038530-2c107229654b?w=500&q=80&auto=format&fit=crop",
-    desc:"Comforting rice folded with fresh yogurt and a light tempering.",
-    ingredients:["Rice","Yogurt","Mustard seeds","Curry leaves"], allergens:["Dairy"] },
+{
+  name: "Veg Biriyani",
+  category: "rice-biryani",
+  veg: true,
+  price: 120,
+  halfPrice: null,
+  fullPrice: 120,
+  desc: "Aromatic basmati rice cooked with fresh vegetables and traditional biriyani spices.",
+  ingredients: ["Basmati rice", "Mixed vegetables", "Onion", "Spices"],
+  allergens: []
+},
 
-  // Breads
-  { name:"Butter Naan", category:"breads", veg:true, price:69,
-    image:"https://images.unsplash.com/photo-1626074353765-517a681e40be?w=500&q=80&auto=format&fit=crop",
-    desc:"Soft leavened flatbread baked in the tandoor, brushed with butter.",
-    ingredients:["Refined flour","Yogurt","Butter"], allergens:["Gluten","Dairy"] },
-  { name:"Garlic Naan", category:"breads", veg:true, price:79,
-    image:"https://images.unsplash.com/photo-1585478259715-4d3a5f2b9a95?w=500&q=80&auto=format&fit=crop",
-    desc:"Tandoor-baked naan topped with roasted garlic and coriander.",
-    ingredients:["Refined flour","Garlic","Coriander","Butter"], allergens:["Gluten","Dairy"] },
-  { name:"Tandoori Roti", category:"breads", veg:true, price:49,
-    image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=80&auto=format&fit=crop",
-    desc:"Whole-wheat flatbread baked fresh in the clay tandoor.",
-    ingredients:["Whole wheat flour"], allergens:["Gluten"] },
-  { name:"Laccha Paratha", category:"breads", veg:true, price:89,
-    image:"https://images.unsplash.com/photo-1626074353765-517a681e40be?w=500&q=80&auto=format&fit=crop",
-    desc:"Multi-layered, flaky whole-wheat bread pan-roasted with ghee.",
-    ingredients:["Whole wheat flour","Ghee"], allergens:["Gluten","Dairy"] },
+{
+  name: "Chicken Dum Biriyani",
+  category: "rice-biryani",
+  veg: false,
+  price: 150,
+  halfPrice: null,
+  fullPrice: 150,
+  desc: "Fragrant basmati rice layered with tender chicken and aromatic biriyani spices.",
+  ingredients: ["Chicken", "Basmati rice", "Onion", "Yogurt", "Biriyani spices"],
+  allergens: ["Dairy"]
+},
 
-  // Beverages
-  { name:"Fresh Lime Soda", category:"beverages", veg:true, price:99,
-    image:"https://images.unsplash.com/photo-1437418747212-8d9709afab22?w=500&q=80&auto=format&fit=crop",
-    desc:"Refreshing lime juice with chilled soda, sweet or salted.",
-    ingredients:["Lime","Soda water","Sugar","Black salt"], allergens:[] },
-  { name:"Mango Smoothie", category:"beverages", veg:true, price:139,
-    image:"https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=500&q=80&auto=format&fit=crop",
-    desc:"Chilled seasonal mango blended smooth with fresh yogurt.",
-    ingredients:["Mango","Yogurt","Sugar"], allergens:["Dairy"] },
-  { name:"Cold Coffee", category:"beverages", veg:true, price:149,
-    image:"https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500&q=80&auto=format&fit=crop",
-    desc:"Chilled coffee blended with ice cream and a dusting of chocolate.",
-    ingredients:["Coffee","Milk","Ice cream","Chocolate"], allergens:["Dairy"] },
-  { name:"Masala Chai", category:"beverages", veg:true, price:79,
-    image:"https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=500&q=80&auto=format&fit=crop",
-    desc:"Traditional Indian tea brewed with milk and aromatic whole spices.",
-    ingredients:["Tea leaves","Milk","Ginger","Cardamom"], allergens:["Dairy"] },
-  { name:"Chocolate Shake", category:"beverages", veg:true, price:159,
-    image:"https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=500&q=80&auto=format&fit=crop",
-    desc:"Creamy chocolate milkshake topped with chocolate shavings.",
-    ingredients:["Milk","Chocolate","Ice cream"], allergens:["Dairy"] },
+{
+  name: "Fried Chicken Biryani",
+  category: "rice-biryani",
+  veg: false,
+  price: 150,
+  halfPrice: null,
+  fullPrice: 150,
+  desc: "A flavorful biryani served with crispy fried chicken and aromatic spices.",
+  ingredients: ["Chicken", "Basmati rice", "Onion", "Spices"],
+  allergens: ["Gluten"]
+},
 
-  // Desserts
-  { name:"Gulab Jamun", category:"desserts", veg:true, price:129,
-    image:"https://images.unsplash.com/photo-1601303516361-8a1970f2bd9c?w=500&q=80&auto=format&fit=crop",
-    desc:"Soft milk dumplings soaked in warm rose-scented sugar syrup.",
-    ingredients:["Milk solids","Sugar syrup","Rose water"], allergens:["Dairy","Gluten"] },
-  { name:"Chocolate Brownie", category:"desserts", veg:true, price:179,
-    image:"https://images.unsplash.com/photo-1607920591413-4ec007e70023?w=500&q=80&auto=format&fit=crop",
-    desc:"Warm fudgy chocolate brownie served with a rich chocolate sauce.",
-    ingredients:["Chocolate","Butter","Flour","Sugar","Egg"], allergens:["Gluten","Dairy","Egg"] },
-  { name:"Ice Cream Scoop", category:"desserts", veg:true, price:99,
-    image:"https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=500&q=80&auto=format&fit=crop",
-    desc:"Choice of vanilla, chocolate or strawberry, served with a wafer.",
-    ingredients:["Milk","Cream","Sugar"], allergens:["Dairy"] },
-  { name:"Rasmalai", category:"desserts", veg:true, price:159,
-    image:"https://images.unsplash.com/photo-1606471191009-63994c53433b?w=500&q=80&auto=format&fit=crop",
-    desc:"Soft cottage cheese discs soaked in saffron sweetened milk.",
-    ingredients:["Paneer","Milk","Saffron","Pistachio"], allergens:["Dairy","Nuts"] },
-  { name:"Tiramisu", category:"desserts", veg:true, price:229,
-    image:"https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=500&q=80&auto=format&fit=crop",
-    desc:"Classic Italian layered dessert with coffee-soaked sponge and cream.",
-    ingredients:["Mascarpone","Coffee","Cocoa","Sponge fingers","Egg"], allergens:["Dairy","Gluten","Egg"] },
+{
+  name: "Mutton Biriyani",
+  category: "rice-biryani",
+  veg: false,
+  price: 210,
+  halfPrice: null,
+  fullPrice: 210,
+  desc: "Aromatic basmati rice cooked with tender mutton and traditional biriyani spices.",
+  ingredients: ["Mutton", "Basmati rice", "Onion", "Yogurt", "Biriyani spices"],
+  allergens: ["Dairy"]
+},
 
-  // Salads
-  { name:"Greek Salad", category:"salads", veg:true, price:219,
-    image:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&q=80&auto=format&fit=crop",
-    desc:"Cucumber, tomato, olives and feta tossed in herbed olive oil.",
-    ingredients:["Cucumber","Tomato","Feta","Olives","Olive oil"], allergens:["Dairy"] },
-  { name:"Kachumber Salad", category:"salads", veg:true, price:149,
-    image:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&q=80&auto=format&fit=crop",
-    desc:"Finely diced cucumber, tomato and onion with lemon and coriander.",
-    ingredients:["Cucumber","Tomato","Onion","Lemon"], allergens:[] },
-  { name:"Chicken Caesar Salad", category:"salads", veg:false, price:279,
-    image:"https://images.unsplash.com/photo-1550304943-4f24f54ddde9?w=500&q=80&auto=format&fit=crop",
-    desc:"Grilled chicken over crisp romaine with parmesan and Caesar dressing.",
-    ingredients:["Chicken","Romaine lettuce","Parmesan","Croutons"], allergens:["Dairy","Gluten","Egg"] },
-  { name:"Sprouts Salad", category:"salads", veg:true, price:159,
-    image:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&q=80&auto=format&fit=crop",
-    desc:"Mixed sprouts tossed with lime, chaat masala and pomegranate.",
-    ingredients:["Mixed sprouts","Pomegranate","Lime","Chaat masala"], allergens:[] },
+// RICE
 
-  // Sides
-  { name:"Raita", category:"sides", veg:true, price:89,
-    image:"https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=500&q=80&auto=format&fit=crop",
-    desc:"Cool whipped yogurt with cucumber, roasted cumin and mint.",
-    ingredients:["Yogurt","Cucumber","Cumin","Mint"], allergens:["Dairy"] },
-  { name:"Papad", category:"sides", veg:true, price:49,
-    image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=80&auto=format&fit=crop",
-    desc:"Crisp roasted lentil wafer, a classic accompaniment.",
-    ingredients:["Lentil flour","Spices"], allergens:[] },
-  { name:"Pickle Trio", category:"sides", veg:true, price:59,
-    image:"https://images.unsplash.com/photo-1596797038530-2c107229654b?w=500&q=80&auto=format&fit=crop",
-    desc:"A trio of house-made mango, lime and mixed vegetable pickle.",
-    ingredients:["Mango","Lime","Mixed vegetables","Mustard oil"], allergens:[] },
-  { name:"French Fries", category:"sides", veg:true, price:139,
-    image:"https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=500&q=80&auto=format&fit=crop",
-    desc:"Golden crisp fries lightly salted and served hot.",
-    ingredients:["Potato","Salt"], allergens:[] },
+{
+  name: "Veg Fried Rice",
+category: "rice-biryani",
+  veg: true,
+  price: 100,
+  halfPrice: null,
+  fullPrice: 100,
+  desc: "Wok-tossed rice with fresh vegetables and aromatic seasoning.",
+  ingredients: ["Rice", "Carrot", "Capsicum", "Cabbage", "Soy sauce"],
+  allergens: ["Soy"]
+},
+
+{
+  name: "Mix Veg Fried Rice",
+category: "rice-biryani",
+  veg: true,
+  price: 130,
+  halfPrice: null,
+  fullPrice: 130,
+  desc: "Flavorful fried rice loaded with a colorful mix of fresh vegetables.",
+  ingredients: ["Rice", "Mixed vegetables", "Garlic", "Soy sauce"],
+  allergens: ["Soy"]
+},
+
+{
+  name: "Chicken Fried Rice",
+category: "rice-biryani",
+  veg: false,
+  price: 110,
+  halfPrice: null,
+  fullPrice: 110,
+  desc: "Wok-fried rice tossed with tender chicken, vegetables and savory seasoning.",
+  ingredients: ["Rice", "Chicken", "Egg", "Vegetables", "Soy sauce"],
+  allergens: ["Egg", "Soy"]
+},
+
+{
+  name: "Lemon Rice",
+category: "rice-biryani",
+  veg: true,
+  price: 90,
+  halfPrice: null,
+  fullPrice: 90,
+  desc: "Fragrant rice flavored with fresh lemon, herbs and mild spices.",
+  ingredients: ["Rice", "Lemon", "Peanuts", "Curry leaves", "Spices"],
+  allergens: ["Peanuts"]
+},
+
+{
+  name: "Jeera Rice",
+category: "rice-biryani",
+  veg: true,
+  price: 90,
+  halfPrice: null,
+  fullPrice: 90,
+  desc: "Aromatic basmati rice tempered with fragrant cumin seeds.",
+  ingredients: ["Basmati rice", "Cumin", "Butter", "Spices"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Veg Pulao",
+category: "rice-biryani",
+  veg: true,
+  price: 120,
+  halfPrice: null,
+  fullPrice: 120,
+  desc: "Aromatic basmati rice cooked with fresh vegetables and mild spices.",
+  ingredients: ["Basmati rice", "Mixed vegetables", "Onion", "Spices"],
+  allergens: []
+},
+
+{
+  name: "Steam Rice",
+category: "rice-biryani",
+  veg: true,
+  price: 50,
+  halfPrice: null,
+  fullPrice: 50,
+  desc: "Simple steamed rice, light and perfect with curries and dals.",
+  ingredients: ["Rice"],
+  allergens: []
+},
+ 
+// BREAD BASKET
+
+{
+  name: "Butter Naan",
+ category: "Breads",
+  veg: true,
+  price: 25,
+  halfPrice: null,
+  fullPrice: 25,
+  desc: "Soft Indian naan brushed with melted butter.",
+  ingredients: ["Refined flour", "Butter", "Yogurt"],
+  allergens: ["Gluten", "Dairy"]
+},
+
+{
+  name: "Garlic Naan",
+ category: "Breads",
+  veg: true,
+  price: 40,
+  halfPrice: null,
+  fullPrice: 40,
+  desc: "Soft naan topped with fresh garlic and aromatic herbs.",
+  ingredients: ["Refined flour", "Garlic", "Butter", "Yogurt"],
+  allergens: ["Gluten", "Dairy"]
+},
+
+{
+  name: "Plain Naan",
+ category: "Breads",
+  veg: true,
+  price: 20,
+  halfPrice: null,
+  fullPrice: 20,
+  desc: "Soft and freshly baked traditional Indian naan.",
+  ingredients: ["Refined flour", "Yogurt", "Butter"],
+  allergens: ["Gluten", "Dairy"]
+},
+
+{
+  name: "Paneer Kulcha",
+ category: "Breads",
+  veg: true,
+  price: 70,
+  halfPrice: null,
+  fullPrice: 70,
+  desc: "Stuffed kulcha filled with seasoned paneer and aromatic spices.",
+  ingredients: ["Refined flour", "Paneer", "Onion", "Spices"],
+  allergens: ["Gluten", "Dairy"]
+},
+
+{
+  name: "Lachha Paratha",
+ category: "Breads",
+  veg: true,
+  price: 20,
+  halfPrice: null,
+  fullPrice: 20,
+  desc: "Flaky layered Indian flatbread cooked until golden and crisp.",
+  ingredients: ["Refined flour", "Butter", "Salt"],
+  allergens: ["Gluten", "Dairy"]
+},
+
+{
+  name: "Chicken Kulcha",
+ category: "Breads",
+  veg: false,
+  price: 70,
+  halfPrice: null,
+  fullPrice: 70,
+  desc: "Soft stuffed kulcha filled with flavorful seasoned chicken.",
+  ingredients: ["Refined flour", "Chicken", "Onion", "Spices"],
+  allergens: ["Gluten"]
+},
+
+{
+  name: "Tandoori Roti",
+ category: "Breads",
+  veg: true,
+  price: 20,
+  halfPrice: null,
+  fullPrice: 20,
+  desc: "Traditional whole-wheat roti baked in a hot tandoor.",
+  ingredients: ["Whole wheat flour", "Salt"],
+  allergens: ["Gluten"]
+},
+
+{
+  name: "Phulka (Plain Roti)",
+ category: "Breads",
+  veg: true,
+  price: 10,
+  halfPrice: null,
+  fullPrice: 10,
+  desc: "Light and soft whole-wheat roti prepared fresh.",
+  ingredients: ["Whole wheat flour", "Water", "Salt"],
+  allergens: ["Gluten"]
+},
+// CHINESE
+
+{
+  name: "Veg Chowmein",
+  category: "Chinese",
+  veg: true,
+  price: 70,
+  halfPrice: null,
+  fullPrice: 70,
+  desc: "Stir-fried noodles tossed with fresh vegetables and flavorful Chinese seasoning.",
+  ingredients: ["Noodles", "Cabbage", "Carrot", "Capsicum", "Soy sauce"],
+  allergens: ["Gluten", "Soy"]
+},
+
+{
+  name: "Chicken Chowmein",
+  category: "Chinese",
+  veg: false,
+  price: 80,
+  halfPrice: null,
+  fullPrice: 80,
+  desc: "Stir-fried noodles with tender chicken, fresh vegetables and savory seasoning.",
+  ingredients: ["Noodles", "Chicken", "Cabbage", "Carrot", "Soy sauce"],
+  allergens: ["Gluten", "Soy"]
+},
+
+{
+  name: "Chicken Roll",
+  category: "Chinese",
+  veg: false,
+  price: 80,
+  halfPrice: null,
+  fullPrice: 80,
+  desc: "Soft roll filled with flavorful chicken and fresh vegetables.",
+  ingredients: ["Chicken", "Refined flour", "Onion", "Capsicum", "Spices"],
+  allergens: ["Gluten"]
+},
+
+{
+  name: "Veg Roll",
+  category: "Chinese",
+  veg: true,
+  price: 70,
+  halfPrice: null,
+  fullPrice: 70,
+  desc: "Soft roll filled with seasoned vegetables and fresh crunchy salad.",
+  ingredients: ["Mixed vegetables", "Refined flour", "Onion", "Capsicum", "Spices"],
+  allergens: ["Gluten"]
+},
+
+{
+  name: "Schezwan Chicken Noodles",
+  category: "Chinese",
+  veg: false,
+  price: 80,
+  halfPrice: null,
+  fullPrice: 80,
+  desc: "Spicy Schezwan noodles tossed with tender chicken and fresh vegetables.",
+  ingredients: ["Noodles", "Chicken", "Schezwan sauce", "Cabbage", "Capsicum"],
+  allergens: ["Gluten", "Soy"]
+},
+
+
+// TANDOOR SPECIAL (NON-VEG & VEG)
+
+{
+  name: "Chicken Tikka",
+ category: "Tandoor",
+  veg: false,
+  price: 180,
+  halfPrice: null,
+  fullPrice: 180,
+  desc: "Tender chicken pieces marinated with aromatic spices and grilled in the tandoor.",
+  ingredients: ["Chicken", "Yogurt", "Ginger", "Garlic", "Tandoori spices"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Chicken Malai Tikka",
+ category: "Tandoor",
+  veg: false,
+  price: 180,
+  halfPrice: null,
+  fullPrice: 180,
+  desc: "Juicy chicken marinated in a creamy, mildly spiced marinade and grilled in the tandoor.",
+  ingredients: ["Chicken", "Cream", "Yogurt", "Cheese", "Spices"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Chicken Hariyali Tikka",
+ category: "Tandoor",
+  veg: false,
+  price: 180,
+  halfPrice: null,
+  fullPrice: 180,
+  desc: "Tender chicken marinated with fresh herbs, mint and aromatic spices.",
+  ingredients: ["Chicken", "Mint", "Coriander", "Yogurt", "Spices"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Chicken Achari Tikka",
+ category: "Tandoor",
+  veg: false,
+  price: 180,
+  halfPrice: null,
+  fullPrice: 180,
+  desc: "Chicken tikka marinated with tangy pickle spices and grilled to perfection.",
+  ingredients: ["Chicken", "Yogurt", "Pickle spices", "Ginger", "Garlic"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Tangdi Kebab",
+ category: "Tandoor",
+  veg: false,
+  price: 210,
+  halfPrice: 210,
+  fullPrice: 420,
+  desc: "Juicy chicken legs marinated in aromatic spices and roasted in the tandoor.",
+  ingredients: ["Chicken legs", "Yogurt", "Ginger", "Garlic", "Spices"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Tandoori Chicken",
+ category: "Tandoor",
+  veg: false,
+  price: 240,
+  halfPrice: 240,
+  fullPrice: 480,
+  desc: "Classic tandoori chicken marinated with yogurt and aromatic spices.",
+  ingredients: ["Chicken", "Yogurt", "Ginger", "Garlic", "Tandoori spices"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Queen's Mix Non-Veg Platter",
+ category: "Tandoor",
+  veg: false,
+  price: 540,
+  halfPrice: null,
+  fullPrice: 540,
+  desc: "A premium platter featuring a delicious assortment of tandoori non-vegetarian specialties.",
+  ingredients: ["Chicken tikka", "Malai tikka", "Hariyali tikka", "Tandoori chicken", "Kebab"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Paneer Tikka",
+ category: "Tandoor",
+  veg: true,
+  price: 180,
+  halfPrice: null,
+  fullPrice: 180,
+  desc: "Soft paneer cubes marinated with aromatic spices and grilled in the tandoor.",
+  ingredients: ["Paneer", "Yogurt", "Capsicum", "Onion", "Spices"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Paneer Malai Tikka",
+ category: "Tandoor",
+  veg: true,
+  price: 180,
+  halfPrice: null,
+  fullPrice: 180,
+  desc: "Creamy and tender paneer marinated with mild spices and grilled in the tandoor.",
+  ingredients: ["Paneer", "Cream", "Yogurt", "Cheese", "Spices"],
+  allergens: ["Dairy"]
+},
+
+
+// BEVERAGES
+
+{
+  name: "Rajsthani Chass (Plain)",
+ category: "Beverages",
+  veg: true,
+  price: 40,
+  halfPrice: null,
+  fullPrice: 40,
+  desc: "Refreshing traditional buttermilk served plain and chilled.",
+  ingredients: ["Curd", "Water", "Salt", "Cumin"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Rajshahi Chass (Masala)",
+ category: "Beverages",
+  veg: true,
+  price: 50,
+  halfPrice: null,
+  fullPrice: 50,
+  desc: "Refreshing spiced buttermilk blended with aromatic herbs and masala.",
+  ingredients: ["Curd", "Water", "Cumin", "Coriander", "Spices"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Punjabi Lassi",
+ category: "Beverages",
+  veg: true,
+  price: 60,
+  halfPrice: null,
+  fullPrice: 60,
+  desc: "Thick and creamy Punjabi-style sweet lassi served chilled.",
+  ingredients: ["Curd", "Milk", "Sugar"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Cold Drink",
+ category: "Beverages",
+  veg: true,
+  price: 20,
+  halfPrice: null,
+  fullPrice: 20,
+  desc: "Refreshing chilled soft drink.",
+  ingredients: [],
+  allergens: []
+},
+
+{
+  name: "Masala Cold Drink",
+ category: "Beverages",
+  veg: true,
+  price: 40,
+  halfPrice: null,
+  fullPrice: 40,
+  desc: "Chilled soft drink enhanced with a refreshing masala twist.",
+  ingredients: ["Soft drink", "Masala", "Lemon"],
+  allergens: []
+},
+
+{
+  name: "Masala Soda",
+ category: "Beverages",
+  veg: true,
+  price: 40,
+  halfPrice: null,
+  fullPrice: 40,
+  desc: "Refreshing fizzy soda blended with lemon and aromatic masala.",
+  ingredients: ["Soda", "Lemon", "Black salt", "Cumin", "Spices"],
+  allergens: []
+},
+
+{
+  name: "Water Bottle",
+ category: "Beverages",
+  veg: true,
+  price: 20,
+  halfPrice: null,
+  fullPrice: 20,
+  desc: "Chilled packaged drinking water.",
+  ingredients: ["Water"],
+  allergens: []
+},
+  // Thali
+  
+{
+  name: "Veg Ghar Ka Thali",
+  category: "Thali",
+  veg: true,
+  price: 130,
+  halfPrice: null,
+  fullPrice: 130,
+  desc: "A wholesome homestyle vegetarian meal served with a variety of traditional dishes.",
+  ingredients: ["Rice", "Dal", "Vegetable curry", "Roti", "Salad"],
+  allergens: []
+},
+
+{
+  name: "Fish Ghar Ka Thali",
+  category: "Thali",
+  veg: false,
+  price: 130,
+  halfPrice: null,
+  fullPrice: 130,
+  desc: "A traditional homestyle thali served with flavorful fish curry and accompaniments.",
+  ingredients: ["Fish", "Rice", "Dal", "Vegetable curry", "Salad"],
+  allergens: ["Fish"]
+},
+
+{
+  name: "Egg Ghar Ka Thali",
+  category: "Thali",
+  veg: false,
+  price: 130,
+  halfPrice: null,
+  fullPrice: 130,
+  desc: "A comforting homestyle thali featuring egg curry with traditional accompaniments.",
+  ingredients: ["Egg", "Rice", "Dal", "Vegetable curry", "Salad"],
+  allergens: ["Egg"]
+},
+
+{
+  name: "Chicken Ghar Ka Thali",
+  category: "Thali",
+  veg: false,
+  price: 160,
+  halfPrice: null,
+  fullPrice: 160,
+  desc: "A hearty homestyle thali served with flavorful chicken curry and traditional sides.",
+  ingredients: ["Chicken", "Rice", "Dal", "Vegetable curry", "Salad"],
+  allergens: []
+},
+
+{
+  name: "Mutton Ghar Ka Thali",
+  category: "Thali",
+  veg: false,
+  price: 240,
+  halfPrice: null,
+  fullPrice: 240,
+  desc: "A rich homestyle thali featuring tender mutton curry and traditional accompaniments.",
+  ingredients: ["Mutton", "Rice", "Dal", "Vegetable curry", "Salad"],
+  allergens: []
+},
+
+{
+  name: "Queen's Special Thali",
+  category: "Thali",
+  veg: false,
+  price: 290,
+  halfPrice: null,
+  fullPrice: 290,
+  desc: "Our signature special thali with a generous selection of delicious traditional dishes.",
+  ingredients: ["Rice", "Dal", "Vegetable curry", "Chicken", "Mutton", "Fish", "Salad"],
+  allergens: ["Fish"]
+},
+
+
 ].map(item => ({ ...item, id:nextId() }));
 
 const RESTAURANT = {
@@ -935,19 +1728,30 @@ function renderCategory(catKey, filter="all"){
   ${bottomNav("categories")}`;
 }
 
-function itemCard(item){
-  return `
-  <div class="item-card" onclick="navigate('item/${item.id}')">
-    <div class="item-card-img">${lazyImg(item.image, item.name)}</div>
-    <div class="item-card-body">
-      <div class="item-top-row">
-        <div class="item-name">${item.name}</div>
-        ${vegBadge(item.veg)}
-      </div>
+function itemCard(item){ 
+  return ` 
+  <div class="item-card"> 
+    <div class="item-card-img">${lazyImg(item.image, item.name)}</div> 
+    <div class="item-card-body"> 
+      <div class="item-top-row"> 
+        <div class="item-name">${item.name}</div> 
+        ${vegBadge(item.veg)} 
+      </div> 
       <div class="item-desc">${item.desc}</div>
-      <div class="item-price">${inr(item.price)}</div>
-    </div>
-  </div>`;
+
+      <div class="item-price">
+        ${
+          item.halfPrice && item.fullPrice
+            ? `<span>Half: ${inr(item.halfPrice)}</span> &nbsp; | &nbsp;
+               <span>Full: ${inr(item.fullPrice)}</span>`
+            : item.fullPrice
+              ? `<span>Full: ${inr(item.fullPrice)}</span>`
+              : `<span>${inr(item.price || item.halfPrice)}</span>`
+        }
+      </div>
+
+    </div> 
+  </div>`; 
 }
 
 function renderItem(id){
