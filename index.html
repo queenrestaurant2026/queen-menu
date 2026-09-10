@@ -303,6 +303,83 @@
   img.lazy-img.loaded{ opacity:1; }
 
   a{ color:inherit; text-decoration:none; }
+  /* ================================
+   CATEGORY BANNER
+================================ */
+
+.category-banner {
+  position: relative;
+  margin: 10px 16px 18px;
+  height: 150px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #eeeeee;
+}
+
+.category-banner img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.category-banner-overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  padding: 22px;
+
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,.72),
+    rgba(0,0,0,.05)
+  );
+}
+
+.category-banner-title {
+  color: #ffffff;
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+.category-banner-subtitle {
+  color: rgba(255,255,255,.88);
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+  .category-banner {
+    height: 135px;
+    margin: 10px 14px 16px;
+    border-radius: 16px;
+  }
+
+  .category-banner-overlay {
+    padding: 18px;
+  }
+
+  .category-banner-title {
+    font-size: 21px;
+  }
+
+  .category-banner-subtitle {
+    font-size: 12px;
+  }
+
+}
 </style>
 </head>
 <body>
@@ -319,16 +396,63 @@
 
 /* ---------------- MENU DATA ---------------- */
 const CATEGORY_META = [
-  { key:"starters",     name:"Soup & Starter",        icon:"soup",     image:"images/soup.jpg" },
-  { key:"main-course",  name:"Main Course",      icon:"utensils-crossed", image:"images/main-c.jpg" },
-  { key:"rice-biryani", name:"Rice & Biryani",   icon:"chef-hat", image:"images/rice.jpg" },
-  { key:"Tandoor",       name:"Tandoor",           icon:"wheat",    image:"images/tandoor.jpg" },
-  { key:"Breads",    name:" Breads",        icon:"cup-soda", image:"images/nan.jpg" },
-  { key:"Chinese",     name:"Chinese",         icon:"cake-slice", image:"images/chinese.jpg" },
-  { key:"Beverages",       name:"Beverages",           icon:"salad",    image:"images/beverages.jpg" },
-   { key:"Thali",       name:"Ghar Ka Thali",           icon:"salad",    image:"images/thali.jpg" },
+  {
+    key:"starters",
+    name:"Soup & Starter",
+    icon:"soup",
+    image:"images/soup.jpg",
+    banner:"images/banner-starters.jpg"
+  },
+  {
+    key:"main-course",
+    name:"Main Course",
+    icon:"utensils-crossed",
+    image:"images/main-c.jpg",
+    banner:"images/banner-main-course.jpg"
+  },
+  {
+    key:"rice-biryani",
+    name:"Rice & Biryani",
+    icon:"chef-hat",
+    image:"images/rice.jpg",
+    banner:"images/banner-rice.jpg"
+  },
+  {
+    key:"Tandoor",
+    name:"Tandoor",
+    icon:"wheat",
+    image:"images/tandoor.jpg",
+    banner:"images/banner-tandoor.jpg"
+  },
+  {
+    key:"Breads",
+    name:"Breads",
+    icon:"cup-soda",
+    image:"images/nan.jpg",
+    banner:"images/banner-breads.jpg"
+  },
+  {
+    key:"Chinese",
+    name:"Chinese",
+    icon:"cake-slice",
+    image:"images/chinese.jpg",
+    banner:"images/banner-chinese.jpg"
+  },
+  {
+    key:"Beverages",
+    name:"Beverages",
+    icon:"salad",
+    image:"images/beverages.jpg",
+    banner:"images/banner-beverages.jpg"
+  },
+  {
+    key:"Thali",
+    name:"Ghar Ka Thali",
+    icon:"salad",
+    image:"images/thali.jpg",
+    banner:"images/banner-thali.jpg"
+  }
 ];
-
 let _id = 0;
 const nextId = () => (++_id).toString();
 
@@ -1703,29 +1827,126 @@ function renderCategories(){
 }
 
 function renderCategory(catKey, filter="all"){
+
   const meta = catMeta(catKey);
+
   if(!meta){
-    return `<div class="screen">${header({back:true, title:"Not found"})}
-      ${emptyState("compass","Category not found","Please go back and choose a category from the list.")}
-    </div>${bottomNav("categories")}`;
+    return `
+      <div class="screen">
+        ${header({
+          back:true,
+          title:"Not found"
+        })}
+
+        ${emptyState(
+          "compass",
+          "Category not found",
+          "Please go back and choose a category from the list."
+        )}
+      </div>
+
+      ${bottomNav("categories")}
+    `;
   }
+
   let items = itemsIn(catKey);
-  if(filter === "veg") items = items.filter(i => i.veg);
-  if(filter === "nonveg") items = items.filter(i => !i.veg);
+
+  if(filter === "veg"){
+    items = items.filter(i => i.veg);
+  }
+
+  if(filter === "nonveg"){
+    items = items.filter(i => !i.veg);
+  }
 
   return `
-  <div class="screen">
-    ${header({ back:true, title:meta.name })}
-    <div class="chip-row" id="filter-chips">
-      <div class="chip ${filter==='all'?'active':''}" onclick="setFilter('${catKey}','all')">All</div>
-      <div class="chip ${filter==='veg'?'active':''}" onclick="setFilter('${catKey}','veg')"><span class="veg-dot" style="background:${filter==='veg' ? '#fff' : 'var(--veg)'}"></span>Veg</div>
-      <div class="chip ${filter==='nonveg'?'active':''}" onclick="setFilter('${catKey}','nonveg')"><span class="veg-dot" style="background:${filter==='nonveg' ? '#fff' : 'var(--nonveg)'}"></span>Non-Veg</div>
+    <div class="screen">
+
+      ${header({
+        back:true,
+        title:meta.name
+      })}
+
+      <!-- CATEGORY BANNER -->
+      <div class="category-banner">
+
+        ${lazyImg(
+          meta.banner,
+          meta.name + " Banner"
+        )}
+
+        <div class="category-banner-overlay">
+
+          <div class="category-banner-title">
+            ${meta.name}
+          </div>
+
+          <div class="category-banner-subtitle">
+            Explore our delicious selection
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- FILTER -->
+      <div class="chip-row" id="filter-chips">
+
+        <div
+          class="chip ${filter === 'all' ? 'active' : ''}"
+          onclick="setFilter('${catKey}','all')">
+          All
+        </div>
+
+        <div
+          class="chip ${filter === 'veg' ? 'active' : ''}"
+          onclick="setFilter('${catKey}','veg')">
+
+          <span
+            class="veg-dot"
+            style="background:${filter === 'veg'
+              ? '#fff'
+              : 'var(--veg)'}">
+          </span>
+
+          Veg
+        </div>
+
+        <div
+          class="chip ${filter === 'nonveg' ? 'active' : ''}"
+          onclick="setFilter('${catKey}','nonveg')">
+
+          <span
+            class="veg-dot"
+            style="background:${filter === 'nonveg'
+              ? '#fff'
+              : 'var(--nonveg)'}">
+          </span>
+
+          Non-Veg
+        </div>
+
+      </div>
+
+      <!-- ITEMS -->
+      <div class="item-list">
+
+        ${
+          items.length
+            ? items.map(itemCard).join("")
+            : emptyState(
+                "search-x",
+                "No items here",
+                "Try a different filter to see more dishes."
+              )
+        }
+
+      </div>
+
     </div>
-    <div class="item-list">
-      ${items.length ? items.map(itemCard).join("") : emptyState("search-x","No items here","Try a different filter to see more dishes.")}
-    </div>
-  </div>
-  ${bottomNav("categories")}`;
+
+    ${bottomNav("categories")}
+  `;
 }
 
 function itemCard(item){ 
