@@ -158,7 +158,21 @@
   /* ---------- Section titles ---------- */
   .section-pad{ padding:22px 20px 4px; }
   .eyebrow{ font-size:11px; letter-spacing:3px; color:var(--gold-deep); font-weight:600; text-transform:uppercase; }
-  .section-title{ font-family:'Cormorant Garamond', serif; font-weight:700; font-size:26px; color:var(--ink); margin-top:2px; }
+.section-title {
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--ink);
+  margin-top: 2px;
+  animation: slowBlink 3s ease-in-out infinite;
+}
+@keyframes slowBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
   .section-desc{ font-size:13px; color:var(--muted); margin-top:2px; }
 
   /* ---------- Hero card on Home ---------- */
@@ -195,7 +209,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    width: 320px;
+    width: 420px;
 }
   .cat-row{
     display:flex; align-items:center; gap:14px; background:var(--paper);
@@ -1780,10 +1794,11 @@ function renderHome(){
   <div class="screen">
     ${header({ showMenuIcon:true })}
     <div class="section-pad">
-      <div class="eyebrow">Digital Menu</div>
-      <div class="section-title">Explore our menu</div>
-      <div class="section-desc">Everything below is for browsing only — show it to your server to order.</div>
-    </div>
+      <div class="eyebrow">Home Delivery Available</div>
+      <div class="section-title">Book Your Order: 9937870117</div>
+      <div class="section-desc">Browse our delicious menu and order your favourites from the comfort of your home.</div>
+
+      </div>
     <div class="hero-card">
       ${lazyImg(RESTAURANT.homeHero, "Today's special")}
       <div class="hero-card-info">
