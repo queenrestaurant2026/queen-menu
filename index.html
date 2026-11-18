@@ -409,6 +409,7 @@
    ========================================================= */
 
 /* ---------------- MENU DATA ---------------- */
+
 const CATEGORY_META = [
   {
     key:"starters",
@@ -459,13 +460,24 @@ const CATEGORY_META = [
     image:"images/beverages.jpg",
     banner:"images/banner-beverages.jpg"
   },
-  {
+ 
+   {
     key:"Thali",
-    name:"Ghar Ka Thali",
+    name:"Thali",
     icon:"salad",
-    image:"images/thali.jpg",
-    banner:"images/banner-thali.jpg"
+    image:"images/Thali.jpg",
+    banner:"images/Thali.jpg"
+  },
+ {
+    key:"Queen-Special",
+    name:"Queen’s Special",
+    icon:"queen-spl",
+    image:"images/quuen.jpg",
+    banner:"images/Queen-sp.jpg"
   }
+
+
+  
 ];
 let _id = 0;
 const nextId = () => (++_id).toString();
@@ -560,25 +572,15 @@ const MENU_ITEMS = [
   allergens: []
 },
 
-{ 
-  name: "French Fries",
-  category: "starters",
-  veg: true,
-  price: 60,
-  halfPrice: 60,
-  fullPrice: null,
-  desc: "Golden crispy French fries seasoned with salt and spices.",
-  ingredients: ["Potato", "Salt", "Oil"],
-  allergens: []
-},
+
 
 { 
   name: "Veg Manchurian",
   category: "starters",
   veg: true,
-  price: 60,
-  halfPrice: 60,
-  fullPrice: 120,
+  price: 100,
+  halfPrice: null,
+  fullPrice: null,
   desc: "Crispy vegetable balls tossed in a spicy Indo-Chinese Manchurian sauce.",
   ingredients: ["Cabbage", "Carrot", "Capsicum", "Garlic", "Soy sauce", "Corn flour"],
   allergens: ["Gluten", "Soy"]
@@ -638,43 +640,33 @@ const MENU_ITEMS = [
   veg: true,
   price: 120,
   halfPrice: null,
-  fullPrice: 120,
+  fullPrice: null,
   desc: "Crispy golden corn tossed with herbs and spicy seasoning.",
   ingredients: ["Sweet corn", "Corn flour", "Chilli", "Coriander", "Spices"],
   allergens: []
 },
 
 { 
-  name: "Crispy Honey Potato",
+  name: "Honey Chilli Potato",
   category: "starters",
   veg: true,
   price: 120,
   halfPrice: null,
-  fullPrice: 120,
+  fullPrice: null,
   desc: "Crispy potato strips glazed with sweet honey and spicy seasoning.",
   ingredients: ["Potato", "Honey", "Sesame", "Chilli", "Spices"],
   allergens: ["Sesame"]
 },
 
-{ 
-  name: "Cheese Roll",
-  category: "starters",
-  veg: true,
-  price: 160,
-  halfPrice: null,
-  fullPrice: 160,
-  desc: "Crispy rolls filled with creamy melted cheese and aromatic seasoning.",
-  ingredients: ["Cheese", "Spring onion", "Garlic", "Wrapper", "Spices"],
-  allergens: ["Dairy", "Gluten"]
-},
+
 
 { 
   name: "Paneer Pakoda",
   category: "starters",
   veg: true,
   price: 120,
-  halfPrice: null,
-  fullPrice: 120,
+  halfPrice: 120,
+  fullPrice: 240,
   desc: "Crispy paneer fritters coated with seasoned gram flour batter.",
   ingredients: ["Paneer", "Gram flour", "Ginger", "Garlic", "Spices"],
   allergens: ["Dairy"]
@@ -685,8 +677,8 @@ const MENU_ITEMS = [
   category: "starters",
   veg: true,
   price: 120,
-  halfPrice: null,
-  fullPrice: 120,
+  halfPrice: 120,
+  fullPrice: 240,
   desc: "Crispy mushroom fritters coated with seasoned batter and deep fried.",
   ingredients: ["Mushroom", "Gram flour", "Ginger", "Garlic", "Spices"],
   allergens: []
@@ -785,7 +777,7 @@ const MENU_ITEMS = [
   // MAIN COURSE (VEG)
 
 {
-  name: "Shahi Paneer",
+  name: "Kadhai Paneer",
   category: "main-course",
   veg: true,
   price: 120,
@@ -797,7 +789,7 @@ const MENU_ITEMS = [
 },
 
 {
-  name: "Kadhai Paneer",
+  name: "Lachha Panner ",
   category: "main-course",
   veg: true,
   price: 120,
@@ -808,17 +800,7 @@ const MENU_ITEMS = [
   allergens: ["Dairy"]
 },
 
-{
-  name: "Paneer Labangalata",
-  category: "main-course",
-  veg: true,
-  price: 240,
-  halfPrice: null,
-  fullPrice: 240,
-  desc: "Paneer prepared in a rich and aromatic gravy with traditional Indian spices.",
-  ingredients: ["Paneer", "Onion", "Tomato", "Spices", "Cream"],
-  allergens: ["Dairy"]
-},
+
 
 {
   name: "Paneer Butter Masala",
@@ -920,9 +902,9 @@ const MENU_ITEMS = [
   name: "Dal Tadka",
   category: "main-course",
   veg: true,
-  price: 60,
-  halfPrice: 60,
-  fullPrice: 120,
+  price: 120,
+  halfPrice: null,
+  fullPrice: null,
   desc: "Yellow lentils tempered with garlic, cumin and aromatic spices.",
   ingredients: ["Yellow lentils", "Garlic", "Cumin", "Tomato", "Spices"],
   allergens: []
@@ -932,9 +914,9 @@ const MENU_ITEMS = [
   name: "Dal Fry",
   category: "main-course",
   veg: true,
-  price: 50,
-  halfPrice: 50,
-  fullPrice: 100,
+  price: 100,
+  halfPrice: null,
+  fullPrice: null,
   desc: "Comforting lentils cooked with onion, tomato and mild Indian spices.",
   ingredients: ["Yellow lentils", "Onion", "Tomato", "Garlic", "Spices"],
   allergens: []
@@ -1014,9 +996,20 @@ const MENU_ITEMS = [
   ingredients: ["Chicken", "Onion", "Tomato", "Ginger", "Garlic", "Spices"],
   allergens: []
 },
+{
+  name: "Chicken Hyderabadi",
+  category: "main-course",
+  veg: false,
+  price: 120,
+  halfPrice: 120,
+  fullPrice: 240,
+  desc: "Tender chicken cooked in a traditional spicy onion-tomato curry.",
+  ingredients: ["Chicken", "Onion", "Tomato", "Ginger", "Garlic", "Spices"],
+  allergens: []
+},
 
 {
-  name: "Chicken Kadhai",
+  name: "Kadhai Chicken",
   category: "main-course",
   veg: false,
   price: 120,
@@ -1089,6 +1082,9 @@ const MENU_ITEMS = [
   allergens: ["Fish"]
 },
 
+
+
+
   // Rice & Biryani
 {
   name: "Veg Biriyani",
@@ -1115,17 +1111,27 @@ const MENU_ITEMS = [
 },
 
 {
-  name: "Fried Chicken Biryani",
+  name: " Chicken 65 Biryani",
   category: "rice-biryani",
   veg: false,
-  price: 150,
+  price: 180,
   halfPrice: null,
-  fullPrice: 150,
+  fullPrice: null,
   desc: "A flavorful biryani served with crispy fried chicken and aromatic spices.",
   ingredients: ["Chicken", "Basmati rice", "Onion", "Spices"],
   allergens: ["Gluten"]
 },
-
+{
+  name: " Tandoori Chicken Biryani",
+  category: "rice-biryani",
+  veg: false,
+  price: 200,
+  halfPrice: null,
+  fullPrice: null,
+  desc: "A flavorful biryani served with crispy fried chicken and aromatic spices.",
+  ingredients: ["Chicken", "Basmati rice", "Onion", "Spices"],
+  allergens: ["Gluten"]
+},
 {
   name: "Mutton Biriyani",
   category: "rice-biryani",
@@ -1211,6 +1217,17 @@ category: "rice-biryani",
   ingredients: ["Basmati rice", "Mixed vegetables", "Onion", "Spices"],
   allergens: []
 },
+{
+  name: "Curd Rice",
+category: "rice-biryani",
+  veg: true,
+  price: 120,
+  halfPrice: null,
+  fullPrice: null,
+  desc: "Simple steamed rice, light and perfect with curries and dals.",
+  ingredients: ["Rice"],
+  allergens: []
+},
 
 {
   name: "Steam Rice",
@@ -1223,6 +1240,8 @@ category: "rice-biryani",
   ingredients: ["Rice"],
   allergens: []
 },
+ 
+
  
 // BREAD BASKET
 
@@ -1261,42 +1280,42 @@ category: "rice-biryani",
   ingredients: ["Refined flour", "Yogurt", "Butter"],
   allergens: ["Gluten", "Dairy"]
 },
-
 {
-  name: "Paneer Kulcha",
+  name: "Masala Naan",
  category: "Breads",
   veg: true,
-  price: 70,
+  price: 60,
   halfPrice: null,
-  fullPrice: 70,
+  fullPrice: null,
+  desc: "Soft and freshly baked traditional Indian naan.",
+  ingredients: ["Refined flour", "Yogurt", "Butter"],
+  allergens: ["Gluten", "Dairy"]
+},
+
+{
+  name: "Paneer Nana",
+ category: "Breads",
+  veg: true,
+  price: 60,
+  halfPrice: null,
+  fullPrice: null,
   desc: "Stuffed kulcha filled with seasoned paneer and aromatic spices.",
   ingredients: ["Refined flour", "Paneer", "Onion", "Spices"],
   allergens: ["Gluten", "Dairy"]
 },
 
 {
-  name: "Lachha Paratha",
+  name: "Kashmiri Naan",
  category: "Breads",
   veg: true,
-  price: 20,
+  price: 60,
   halfPrice: null,
-  fullPrice: 20,
+  fullPrice: null,
   desc: "Flaky layered Indian flatbread cooked until golden and crisp.",
   ingredients: ["Refined flour", "Butter", "Salt"],
   allergens: ["Gluten", "Dairy"]
 },
 
-{
-  name: "Chicken Kulcha",
- category: "Breads",
-  veg: false,
-  price: 70,
-  halfPrice: null,
-  fullPrice: 70,
-  desc: "Soft stuffed kulcha filled with flavorful seasoned chicken.",
-  ingredients: ["Refined flour", "Chicken", "Onion", "Spices"],
-  allergens: ["Gluten"]
-},
 
 {
   name: "Tandoori Roti",
@@ -1304,7 +1323,7 @@ category: "rice-biryani",
   veg: true,
   price: 20,
   halfPrice: null,
-  fullPrice: 20,
+  fullPrice: null,
   desc: "Traditional whole-wheat roti baked in a hot tandoor.",
   ingredients: ["Whole wheat flour", "Salt"],
   allergens: ["Gluten"]
@@ -1316,7 +1335,18 @@ category: "rice-biryani",
   veg: true,
   price: 10,
   halfPrice: null,
-  fullPrice: 10,
+  fullPrice: null,
+  desc: "Light and soft whole-wheat roti prepared fresh.",
+  ingredients: ["Whole wheat flour", "Water", "Salt"],
+  allergens: ["Gluten"]
+},
+{
+  name: "Tawa Paratha",
+ category: "Breads",
+  veg: true,
+  price: 30,
+  halfPrice: null,
+  fullPrice: null,
   desc: "Light and soft whole-wheat roti prepared fresh.",
   ingredients: ["Whole wheat flour", "Water", "Salt"],
   allergens: ["Gluten"]
@@ -1327,9 +1357,9 @@ category: "rice-biryani",
   name: "Veg Chowmein",
   category: "Chinese",
   veg: true,
-  price: 70,
+  price: 80,
   halfPrice: null,
-  fullPrice: 70,
+  fullPrice: null,
   desc: "Stir-fried noodles tossed with fresh vegetables and flavorful Chinese seasoning.",
   ingredients: ["Noodles", "Cabbage", "Carrot", "Capsicum", "Soy sauce"],
   allergens: ["Gluten", "Soy"]
@@ -1339,9 +1369,9 @@ category: "rice-biryani",
   name: "Chicken Chowmein",
   category: "Chinese",
   veg: false,
-  price: 80,
+  price:90,
   halfPrice: null,
-  fullPrice: 80,
+  fullPrice: null,
   desc: "Stir-fried noodles with tender chicken, fresh vegetables and savory seasoning.",
   ingredients: ["Noodles", "Chicken", "Cabbage", "Carrot", "Soy sauce"],
   allergens: ["Gluten", "Soy"]
@@ -1351,9 +1381,9 @@ category: "rice-biryani",
   name: "Chicken Roll",
   category: "Chinese",
   veg: false,
-  price: 80,
+  price:90,
   halfPrice: null,
-  fullPrice: 80,
+  fullPrice: null,
   desc: "Soft roll filled with flavorful chicken and fresh vegetables.",
   ingredients: ["Chicken", "Refined flour", "Onion", "Capsicum", "Spices"],
   allergens: ["Gluten"]
@@ -1363,9 +1393,9 @@ category: "rice-biryani",
   name: "Veg Roll",
   category: "Chinese",
   veg: true,
-  price: 70,
+  price: 80,
   halfPrice: null,
-  fullPrice: 70,
+  fullPrice: null,
   desc: "Soft roll filled with seasoned vegetables and fresh crunchy salad.",
   ingredients: ["Mixed vegetables", "Refined flour", "Onion", "Capsicum", "Spices"],
   allergens: ["Gluten"]
@@ -1375,14 +1405,47 @@ category: "rice-biryani",
   name: "Schezwan Chicken Noodles",
   category: "Chinese",
   veg: false,
-  price: 80,
+  price: 110,
   halfPrice: null,
-  fullPrice: 80,
+  fullPrice: null,
   desc: "Spicy Schezwan noodles tossed with tender chicken and fresh vegetables.",
   ingredients: ["Noodles", "Chicken", "Schezwan sauce", "Cabbage", "Capsicum"],
   allergens: ["Gluten", "Soy"]
 },
 
+{
+  name: "Mixed Manchurian Noodles",
+  category: "Chinese",
+  veg: false,
+  price: 110,
+  halfPrice: null,
+  fullPrice: null,
+  desc: "Spicy Schezwan noodles tossed with tender chicken and fresh vegetables.",
+  ingredients: ["Noodles", "Chicken", "Schezwan sauce", "Cabbage", "Capsicum"],
+  allergens: ["Gluten", "Soy"]
+},
+{
+  name: "Chicken Spring Rolls",
+  category: "Chinese",
+  veg: false,
+  price: 110,
+  halfPrice: null,
+  fullPrice: null,
+  desc: "Spicy Schezwan noodles tossed with tender chicken and fresh vegetables.",
+  ingredients: ["Noodles", "Chicken", "Schezwan sauce", "Cabbage", "Capsicum"],
+  allergens: ["Gluten", "Soy"]
+},
+{
+  name: "Veg Spring Rolls",
+  category: "Chinese",
+  veg: false,
+  price: 100,
+  halfPrice: null,
+  fullPrice: null,
+  desc: "Spicy Schezwan noodles tossed with tender chicken and fresh vegetables.",
+  ingredients: ["Noodles", "Chicken", "Schezwan sauce", "Cabbage", "Capsicum"],
+  allergens: ["Gluten", "Soy"]
+},
 
 // TANDOOR SPECIAL (NON-VEG & VEG)
 
@@ -1392,7 +1455,7 @@ category: "rice-biryani",
   veg: false,
   price: 180,
   halfPrice: null,
-  fullPrice: 180,
+  fullPrice: null,
   desc: "Tender chicken pieces marinated with aromatic spices and grilled in the tandoor.",
   ingredients: ["Chicken", "Yogurt", "Ginger", "Garlic", "Tandoori spices"],
   allergens: ["Dairy"]
@@ -1404,7 +1467,7 @@ category: "rice-biryani",
   veg: false,
   price: 180,
   halfPrice: null,
-  fullPrice: 180,
+  fullPrice: null,
   desc: "Juicy chicken marinated in a creamy, mildly spiced marinade and grilled in the tandoor.",
   ingredients: ["Chicken", "Cream", "Yogurt", "Cheese", "Spices"],
   allergens: ["Dairy"]
@@ -1416,7 +1479,7 @@ category: "rice-biryani",
   veg: false,
   price: 180,
   halfPrice: null,
-  fullPrice: 180,
+  fullPrice: null,
   desc: "Tender chicken marinated with fresh herbs, mint and aromatic spices.",
   ingredients: ["Chicken", "Mint", "Coriander", "Yogurt", "Spices"],
   allergens: ["Dairy"]
@@ -1428,19 +1491,19 @@ category: "rice-biryani",
   veg: false,
   price: 180,
   halfPrice: null,
-  fullPrice: 180,
+  fullPrice: null,
   desc: "Chicken tikka marinated with tangy pickle spices and grilled to perfection.",
   ingredients: ["Chicken", "Yogurt", "Pickle spices", "Ginger", "Garlic"],
   allergens: ["Dairy"]
 },
 
 {
-  name: "Tangdi Kebab",
+  name: "Tangdi Kabab",
  category: "Tandoor",
   veg: false,
-  price: 210,
-  halfPrice: 210,
-  fullPrice: 420,
+  price: 220,
+  halfPrice: 220,
+  fullPrice: 440,
   desc: "Juicy chicken legs marinated in aromatic spices and roasted in the tandoor.",
   ingredients: ["Chicken legs", "Yogurt", "Ginger", "Garlic", "Spices"],
   allergens: ["Dairy"]
@@ -1451,24 +1514,13 @@ category: "rice-biryani",
  category: "Tandoor",
   veg: false,
   price: 240,
-  halfPrice: 240,
-  fullPrice: 480,
+  halfPrice: 230,
+  fullPrice: 460,
   desc: "Classic tandoori chicken marinated with yogurt and aromatic spices.",
   ingredients: ["Chicken", "Yogurt", "Ginger", "Garlic", "Tandoori spices"],
   allergens: ["Dairy"]
 },
 
-{
-  name: "Queen's Mix Non-Veg Platter",
- category: "Tandoor",
-  veg: false,
-  price: 540,
-  halfPrice: null,
-  fullPrice: 540,
-  desc: "A premium platter featuring a delicious assortment of tandoori non-vegetarian specialties.",
-  ingredients: ["Chicken tikka", "Malai tikka", "Hariyali tikka", "Tandoori chicken", "Kebab"],
-  allergens: ["Dairy"]
-},
 
 {
   name: "Paneer Tikka",
@@ -1476,7 +1528,7 @@ category: "rice-biryani",
   veg: true,
   price: 180,
   halfPrice: null,
-  fullPrice: 180,
+  fullPrice: null,
   desc: "Soft paneer cubes marinated with aromatic spices and grilled in the tandoor.",
   ingredients: ["Paneer", "Yogurt", "Capsicum", "Onion", "Spices"],
   allergens: ["Dairy"]
@@ -1488,78 +1540,102 @@ category: "rice-biryani",
   veg: true,
   price: 180,
   halfPrice: null,
-  fullPrice: 180,
+  fullPrice: null,
   desc: "Creamy and tender paneer marinated with mild spices and grilled in the tandoor.",
   ingredients: ["Paneer", "Cream", "Yogurt", "Cheese", "Spices"],
   allergens: ["Dairy"]
 },
 
 
+{
+  name: "Tandoori Non-Veg Platter",
+  category: "Tandoor",
+  veg: false,
+  price: 540,
+  halfPrice: null,
+  fullPrice: 540,
+  desc: "A delicious assortment of assorted tandoori non-veg specialties.",
+  ingredients: ["Chicken", "Yogurt", "Tandoori Spices"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Indian Veg Platter",
+  category: "Tandoor",
+  veg: true,
+  price: 440,
+  halfPrice: null,
+  fullPrice: 440,
+  desc: "A delightful combination of Indian vegetarian specialties.",
+  ingredients: ["Paneer", "Vegetables", "Indian Spices"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Chinese Non-Veg Platter",
+  category: "Tandoor",
+  veg: false,
+  price: 399,
+  halfPrice: null,
+  fullPrice: 399,
+  desc: "A tempting combination of delicious Chinese non-vegetarian favorites.",
+  ingredients: ["Chicken", "Vegetables", "Chinese Sauces", "Spices"],
+  allergens: ["Soy"]
+},
+
+{
+  name: "Chinese Veg Platter",
+  category: "Tandoor",
+  veg: true,
+  price: 399,
+  halfPrice: null,
+  fullPrice: 399,
+  desc: "A delicious assortment of popular Chinese vegetarian dishes.",
+  ingredients: ["Vegetables", "Noodles", "Chinese Sauces", "Spices"],
+  allergens: ["Soy"]
+},
+
+{
+  name: "Non-Veg Buffet Platter",
+  category: "Tandoor",
+  veg: false,
+  price: 499,
+  halfPrice: null,
+  fullPrice: 499,
+  desc: "A special buffet-style platter featuring non-vegetarian delights.",
+  ingredients: ["Chicken", "Vegetables", "Special Sauces", "Spices"],
+  allergens: ["Dairy", "Soy"]
+},
+
+{
+  name: "Veg Buffet Platter",
+  category: "Tandoor",
+  veg: true,
+  price: 399,
+  halfPrice: null,
+  fullPrice: 399,
+  desc: "A special buffet-style platter featuring vegetarian delights.",
+  ingredients: ["Paneer", "Vegetables", "Special Sauces", "Spices"],
+  allergens: ["Dairy", "Soy"]
+},
+
 // BEVERAGES
 
 {
-  name: "Rajsthani Chass (Plain)",
- category: "Beverages",
-  veg: true,
-  price: 40,
-  halfPrice: null,
-  fullPrice: 40,
-  desc: "Refreshing traditional buttermilk served plain and chilled.",
-  ingredients: ["Curd", "Water", "Salt", "Cumin"],
-  allergens: ["Dairy"]
-},
-
-{
-  name: "Rajshahi Chass (Masala)",
- category: "Beverages",
-  veg: true,
-  price: 50,
-  halfPrice: null,
-  fullPrice: 50,
-  desc: "Refreshing spiced buttermilk blended with aromatic herbs and masala.",
-  ingredients: ["Curd", "Water", "Cumin", "Coriander", "Spices"],
-  allergens: ["Dairy"]
-},
-
-{
-  name: "Punjabi Lassi",
- category: "Beverages",
-  veg: true,
-  price: 60,
-  halfPrice: null,
-  fullPrice: 60,
-  desc: "Thick and creamy Punjabi-style sweet lassi served chilled.",
-  ingredients: ["Curd", "Milk", "Sugar"],
-  allergens: ["Dairy"]
-},
-
-{
   name: "Cold Drink",
- category: "Beverages",
+  category: "Beverages",
   veg: true,
   price: 20,
   halfPrice: null,
   fullPrice: 20,
   desc: "Refreshing chilled soft drink.",
-  ingredients: [],
-  allergens: []
-},
-
-{
-  name: "Masala Cold Drink",
- category: "Beverages",
-  veg: true,
-  price: 40,
-  halfPrice: null,
-  fullPrice: 40,
-  desc: "Chilled soft drink enhanced with a refreshing masala twist.",
-  ingredients: ["Soft drink", "Masala", "Lemon"],
+  ingredients: ["Soft drink"],
   allergens: []
 },
 
 {
   name: "Masala Soda",
- category: "Beverages",
+  category: "Beverages",
   veg: true,
   price: 40,
   halfPrice: null,
@@ -1570,8 +1646,32 @@ category: "rice-biryani",
 },
 
 {
+  name: "Punjabi Lassi",
+  category: "Beverages",
+  veg: true,
+  price: 60,
+  halfPrice: null,
+  fullPrice: 60,
+  desc: "Thick and creamy Punjabi-style sweet lassi served chilled.",
+  ingredients: ["Curd", "Milk", "Sugar"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Rajasthani Chaas",
+  category: "Beverages",
+  veg: true,
+  price: 50,
+  halfPrice: null,
+  fullPrice: 50,
+  desc: "Refreshing traditional spiced buttermilk served chilled.",
+  ingredients: ["Curd", "Water", "Cumin", "Coriander", "Spices"],
+  allergens: ["Dairy"]
+},
+
+{
   name: "Water Bottle",
- category: "Beverages",
+  category: "Beverages",
   veg: true,
   price: 20,
   halfPrice: null,
@@ -1579,6 +1679,137 @@ category: "rice-biryani",
   desc: "Chilled packaged drinking water.",
   ingredients: ["Water"],
   allergens: []
+},
+
+{
+  name: "Pina Colada",
+  category: "Beverages",
+  veg: true,
+  price: 90,
+  halfPrice: null,
+  fullPrice: 90,
+  desc: "Tropical creamy pineapple and coconut refreshing drink.",
+  ingredients: ["Pineapple", "Coconut Milk", "Sugar", "Ice"],
+  allergens: []
+},
+
+
+{
+  name: "Lemon Mojito",
+  category: "Beverages",
+  veg: true,
+  price: 70,
+  halfPrice: null,
+  fullPrice: 70,
+  desc: "Refreshing lemon drink with mint and a fizzy twist.",
+  ingredients: ["Lemon", "Mint", "Sugar", "Soda", "Ice"],
+  allergens: []
+},
+
+{
+  name: "Strawberry Mojito",
+  category: "Beverages",
+  veg: true,
+  price: 70,
+  halfPrice: null,
+  fullPrice: 70,
+  desc: "Sweet and refreshing strawberry drink with mint and soda.",
+  ingredients: ["Strawberry", "Mint", "Lemon", "Soda", "Sugar"],
+  allergens: []
+},
+
+{
+  name: "Mint Lemonade",
+  category: "Beverages",
+  veg: true,
+  price: 70,
+  halfPrice: null,
+  fullPrice: 70,
+  desc: "Cool and refreshing lemonade blended with fresh mint.",
+  ingredients: ["Lemon", "Mint", "Sugar", "Water", "Ice"],
+  allergens: []
+},
+
+{
+  name: "Blue Lagoon",
+  category: "Beverages",
+  veg: true,
+  price: 70,
+  halfPrice: null,
+  fullPrice: 70,
+  desc: "Refreshing blue citrus drink served chilled with ice.",
+  ingredients: ["Blue Curacao Syrup", "Lemon", "Soda", "Ice"],
+  allergens: []
+},
+{
+  name: "Vanilla Milk Shake",
+  category: "Beverages",
+  veg: true,
+  price: 90,
+  halfPrice: null,
+  fullPrice: 90,
+  desc: "Smooth and creamy vanilla milkshake served chilled.",
+  ingredients: ["Milk", "Vanilla Ice Cream", "Sugar"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Chocolate Milk Shake",
+  category: "Beverages",
+  veg: true,
+  price: 90,
+  halfPrice: null,
+  fullPrice: 90,
+  desc: "Rich and creamy chocolate milkshake served chilled.",
+  ingredients: ["Milk", "Chocolate", "Chocolate Ice Cream", "Sugar"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Strawberry Milk Shake",
+  category: "Beverages",
+  veg: true,
+  price: 90,
+  halfPrice: null,
+  fullPrice: 90,
+  desc: "Delicious creamy strawberry milkshake served chilled.",
+  ingredients: ["Milk", "Strawberry", "Strawberry Ice Cream", "Sugar"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Cold Coffee",
+  category: "Beverages",
+  veg: true,
+  price: 90,
+  halfPrice: null,
+  fullPrice: 90,
+  desc: "Rich and refreshing chilled coffee blended with milk.",
+  ingredients: ["Milk", "Coffee", "Sugar", "Ice Cream"],
+  allergens: ["Dairy"]
+},
+{
+  name: "Ice Spanish Latte",
+  category: "Beverages",
+  veg: true,
+  price: 120,
+  halfPrice: null,
+  fullPrice: 120,
+  desc: "Smooth iced espresso blended with creamy milk and sweetened milk.",
+  ingredients: ["Espresso", "Milk", "Sweetened Condensed Milk", "Ice"],
+  allergens: ["Dairy"]
+},
+
+{
+  name: "Ice Cream",
+  category: "Beverages",
+  veg: true,
+  price: null,
+  halfPrice: null,
+  fullPrice: null,
+  desc: "Delicious and creamy ice cream served chilled.",
+  ingredients: ["Milk", "Sugar", "Ice Cream"],
+  allergens: ["Dairy"]
 },
   // Thali
   
@@ -1588,7 +1819,7 @@ category: "rice-biryani",
   veg: true,
   price: 130,
   halfPrice: null,
-  fullPrice: 130,
+  fullPrice: null,
   desc: "A wholesome homestyle vegetarian meal served with a variety of traditional dishes.",
   ingredients: ["Rice", "Dal", "Vegetable curry", "Roti", "Salad"],
   allergens: []
@@ -1600,7 +1831,7 @@ category: "rice-biryani",
   veg: false,
   price: 130,
   halfPrice: null,
-  fullPrice: 130,
+  fullPrice: null,
   desc: "A traditional homestyle thali served with flavorful fish curry and accompaniments.",
   ingredients: ["Fish", "Rice", "Dal", "Vegetable curry", "Salad"],
   allergens: ["Fish"]
@@ -1612,7 +1843,7 @@ category: "rice-biryani",
   veg: false,
   price: 130,
   halfPrice: null,
-  fullPrice: 130,
+  fullPrice: null,
   desc: "A comforting homestyle thali featuring egg curry with traditional accompaniments.",
   ingredients: ["Egg", "Rice", "Dal", "Vegetable curry", "Salad"],
   allergens: ["Egg"]
@@ -1636,7 +1867,7 @@ category: "rice-biryani",
   veg: false,
   price: 240,
   halfPrice: null,
-  fullPrice: 240,
+  fullPrice: null,
   desc: "A rich homestyle thali featuring tender mutton curry and traditional accompaniments.",
   ingredients: ["Mutton", "Rice", "Dal", "Vegetable curry", "Salad"],
   allergens: []
@@ -1648,11 +1879,331 @@ category: "rice-biryani",
   veg: false,
   price: 290,
   halfPrice: null,
-  fullPrice: 290,
+  fullPrice: null,
   desc: "Our signature special thali with a generous selection of delicious traditional dishes.",
   ingredients: ["Rice", "Dal", "Vegetable curry", "Chicken", "Mutton", "Fish", "Salad"],
   allergens: ["Fish"]
 },
+
+
+  // Queen’s Special
+  {
+    name: "Veg Bao",
+    category: "Queen-Special",
+    veg: true,
+    price: 160,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Soft bao filled with delicious vegetables.",
+    ingredients: ["Bao Bun", "Vegetables", "Sauces"],
+    allergens: ["Gluten", "Soy"]
+  },
+  {
+    name: "Veg Cheese Roll",
+    category: "Queen-Special",
+    veg: true,
+    price: 160,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Crispy roll stuffed with vegetables and cheese.",
+    ingredients: ["Vegetables", "Cheese", "Flour"],
+    allergens: ["Dairy", "Gluten"]
+  },
+  {
+    name: "Cheese Corn Ball",
+    category: "Queen-Special",
+    veg: true,
+    price: 180,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Crispy golden balls filled with cheese and sweet corn.",
+    ingredients: ["Cheese", "Sweet Corn", "Potato"],
+    allergens: ["Dairy", "Gluten"]
+  },
+  {
+    name: "Veg Gold Coin",
+    category: "Queen-Special",
+    veg: true,
+    price: 160,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Crispy golden vegetable coins.",
+    ingredients: ["Vegetables", "Bread", "Spices"],
+    allergens: ["Gluten"]
+  },
+  {
+    name: "Roasted Chana",
+    category: "Queen-Special",
+    veg: true,
+    price: 120,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Crunchy roasted chana.",
+    ingredients: ["Chana", "Spices"],
+    allergens: []
+  },
+  {
+    name: "Salted Cashew",
+    category: "Queen-Special",
+    veg: true,
+    price: 160,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Lightly salted roasted cashews.",
+    ingredients: ["Cashew", "Salt"],
+    allergens: ["Tree Nuts"]
+  },
+  {
+    name: "Paneer Sona Stick",
+    category: "Queen-Special",
+    veg: true,
+    price: 180,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Crispy paneer sticks seasoned with special spices.",
+    ingredients: ["Paneer", "Spices", "Flour"],
+    allergens: ["Dairy", "Gluten"]
+  },
+  {
+    name: "Paneer Majestic",
+    category: "Queen-Special",
+    veg: true,
+    price: 180,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Crispy paneer tossed in a spicy special sauce.",
+    ingredients: ["Paneer", "Capsicum", "Sauces"],
+    allergens: ["Dairy", "Soy"]
+  },
+  {
+    name: "Hara Bhara Kabab",
+    category: "Queen-Special",
+    veg: true,
+    price: 180,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Delicious green vegetable and spinach kebabs.",
+    ingredients: ["Spinach", "Green Peas", "Potato", "Spices"],
+    allergens: []
+  },
+  {
+    name: "Tandoori Stuffed Mushroom",
+    category: "Queen-Special",
+    veg: true,
+    price: 180,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Mushrooms stuffed and cooked with tandoori spices.",
+    ingredients: ["Mushroom", "Stuffing", "Yogurt", "Spices"],
+    allergens: ["Dairy"]
+  },
+
+  // QUEEN SPECIAL - NON-VEG STARTERS
+  {
+    name: "Chicken Bao",
+    category: "Queen-Special",
+    veg: false,
+    price: 180,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Soft bao filled with flavorful chicken.",
+    ingredients: ["Bao Bun", "Chicken", "Sauces"],
+    allergens: ["Gluten", "Soy"]
+  },
+  {
+    name: "Chicken Sona Stick",
+    category: "Queen-Special",
+    veg: false,
+    price: 180,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Crispy chicken sticks with special seasoning.",
+    ingredients: ["Chicken", "Spices", "Flour"],
+    allergens: ["Gluten"]
+  },
+  {
+    name: "Chicken Majestic",
+    category: "Queen-Special",
+    veg: false,
+    price: 180,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Crispy chicken tossed in a spicy special sauce.",
+    ingredients: ["Chicken", "Capsicum", "Sauces"],
+    allergens: ["Soy"]
+  },
+  {
+    name: "Garlic Chicken Kabab",
+    category: "Queen-Special",
+    veg: false,
+    price: 200,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Juicy chicken kebab flavored with garlic.",
+    ingredients: ["Chicken", "Garlic", "Spices"],
+    allergens: []
+  },
+  {
+    name: "Chicken Seekh Kabab",
+    category: "Queen-Special",
+    veg: false,
+    price: 220,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Minced chicken kebab seasoned with aromatic spices.",
+    ingredients: ["Chicken", "Onion", "Spices"],
+    allergens: []
+  },
+  {
+    name: "Chicken Samosa",
+    category: "Queen-Special",
+    veg: false,
+    price: 110,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Crispy pastry filled with spiced chicken.",
+    ingredients: ["Chicken", "Flour", "Spices"],
+    allergens: ["Gluten"]
+  },
+  {
+    name: "Paneer Samosa",
+    category: "Queen-Special",
+    veg: true,
+    price: 110,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Crispy pastry filled with spiced paneer.",
+    ingredients: ["Paneer", "Flour", "Spices"],
+    allergens: ["Dairy", "Gluten"]
+  },
+
+  // QUEEN SPECIAL - VEG MAIN COURSE
+  {
+    name: "Paneer Labangalata",
+    category: "Queen-Special",
+    veg: true,
+    price: 240,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Special paneer preparation with rich aromatic gravy.",
+    ingredients: ["Paneer", "Onion", "Tomato", "Spices"],
+    allergens: ["Dairy"]
+  },
+  {
+    name: "Paneer Chatpata",
+    category: "Queen-Special",
+    veg: true,
+    price: 240,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Paneer cooked in a tangy and spicy masala gravy.",
+    ingredients: ["Paneer", "Tomato", "Onion", "Spices"],
+    allergens: ["Dairy"]
+  },
+  {
+    name: "Veg Kolhapuri",
+    category: "Queen-Special",
+    veg: true,
+    price: 220,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Mixed vegetables cooked in spicy Kolhapuri masala.",
+    ingredients: ["Mixed Vegetables", "Onion", "Tomato", "Spices"],
+    allergens: []
+  },
+  {
+    name: "Mushroom Pan Fried",
+    category: "Queen-Special",
+    veg: true,
+    price: 220,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Pan-fried mushrooms tossed with flavorful seasoning.",
+    ingredients: ["Mushroom", "Garlic", "Sauces", "Spices"],
+    allergens: ["Soy"]
+  },
+
+  // QUEEN SPECIAL - NON-VEG MAIN COURSE
+  {
+    name: "Afghani Chicken Curry",
+    category: "Queen-Special",
+    veg: false,
+    price: 300,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Creamy chicken curry with rich Afghani flavors.",
+    ingredients: ["Chicken", "Cream", "Yogurt", "Spices"],
+    allergens: ["Dairy"]
+  },
+  {
+    name: "Murgh Musallam",
+    category: "Queen-Special",
+    veg: false,
+    price: 320,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Traditional whole-style chicken preparation in rich gravy.",
+    ingredients: ["Chicken", "Onion", "Tomato", "Spices"],
+    allergens: []
+  },
+  {
+    name: "Punjhabi Chicken Curry",
+    category: "Queen-Special",
+    veg: false,
+    price: 300,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Chicken cooked in rich Punjabi-style curry.",
+    ingredients: ["Chicken", "Onion", "Tomato", "Spices"],
+    allergens: []
+  },
+  {
+    name: "Chicken Chatpata",
+    category: "Queen-Special",
+    veg: false,
+    price: 260,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Spicy and tangy chicken curry with special masala.",
+    ingredients: ["Chicken", "Onion", "Tomato", "Spices"],
+    allergens: []
+  },
+  {
+    name: "Mutton Handi",
+    category: "Queen-Special",
+    veg: false,
+    price: 420,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Slow-cooked mutton in rich handi-style gravy.",
+    ingredients: ["Mutton", "Onion", "Tomato", "Spices"],
+    allergens: []
+  },
+  {
+    name: "Mutton Rogan Josh",
+    category: "Queen-Special",
+    veg: false,
+    price: 420,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Aromatic mutton curry prepared with traditional spices.",
+    ingredients: ["Mutton", "Yogurt", "Spices"],
+    allergens: ["Dairy"]
+  },
+  {
+    name: "Mutton Kalimirchi",
+    category: "Queen-Special",
+    veg: false,
+    price: 420,
+    halfPrice: null,
+    fullPrice: null,
+    desc: "Mutton cooked with bold black pepper flavors.",
+    ingredients: ["Mutton", "Black Pepper", "Onion", "Spices"],
+    allergens: []
+  }
+
+
+
 
 
 ].map(item => ({ ...item, id:nextId() }));
@@ -1974,17 +2525,20 @@ function itemCard(item){
         ${vegBadge(item.veg)} 
       </div> 
       <div class="item-desc">${item.desc}</div>
+  
+<div class="item-price">
+  ${
+    item.halfPrice && item.fullPrice
+      ? `<span>Half: ${inr(item.halfPrice)}</span> &nbsp; | &nbsp;
+         <span>Full: ${inr(item.fullPrice)}</span>`
+      : item.fullPrice
+        ? `<span>Full: ${inr(item.fullPrice)}</span>`
+        : item.price != null
+          ? `<span>${inr(item.price)}</span>`
+          : ``
+  }
+</div>
 
-      <div class="item-price">
-        ${
-          item.halfPrice && item.fullPrice
-            ? `<span>Half: ${inr(item.halfPrice)}</span> &nbsp; | &nbsp;
-               <span>Full: ${inr(item.fullPrice)}</span>`
-            : item.fullPrice
-              ? `<span>Full: ${inr(item.fullPrice)}</span>`
-              : `<span>${inr(item.price || item.halfPrice)}</span>`
-        }
-      </div>
 
     </div> 
   </div>`; 
